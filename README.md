@@ -1,6 +1,9 @@
 # 哥斯拉源码
 向哥斯拉作者表示respect: https://github.com/BeichenDream/Godzilla
 
+---
+由于本人是菜鸡，对于java并不属于，在反编译过程中得到了大佬[剑仙](https://github.com/yhy0)的帮助，表示感谢。
+
 # 说明
 1. 源码版本为v3.03-godzilla
 2. 本项目由于是根据作者项目逆向得到的源码，可能还存在一些问题，在学习研究中会及时更改错误。
