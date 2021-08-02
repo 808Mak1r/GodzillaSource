@@ -50,7 +50,7 @@ public class ShellRSFilePanel extends JPanel {
         this.splitPane.setTopComponent(this.topPanel);
         this.splitPane.setBottomComponent(this.scrollPane);
         this.encodingComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.ShellRSFilePanel.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 if (ShellRSFilePanel.this.fileData != null) {
@@ -70,8 +70,8 @@ public class ShellRSFilePanel extends JPanel {
         refreshData();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void refreshData() {
         try {
             this.fileDataTextArea.setText(new String(this.fileData, this.encodingTypeString));

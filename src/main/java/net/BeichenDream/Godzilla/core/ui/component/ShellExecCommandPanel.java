@@ -56,11 +56,11 @@ public class ShellExecCommandPanel extends JPanel {
         this.osInfo = this.shell.getOsInfo();
         this.status.setText("正在连接...请稍等");
         new Thread(new Runnable() {
-            /* class core.ui.component.ShellExecCommandPanel.AnonymousClass1 */
+             
 
             public void run() {
                 SwingUtilities.invokeLater(new Runnable() {
-                    /* class core.ui.component.ShellExecCommandPanel.AnonymousClass1.AnonymousClass1 */
+                     
 
                     public void run() {
                         try {

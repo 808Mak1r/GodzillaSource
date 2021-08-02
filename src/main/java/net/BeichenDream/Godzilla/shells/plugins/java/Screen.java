@@ -44,7 +44,7 @@ public class Screen implements Plugin {
         this.splitPane.setTopComponent(topPanel);
         this.splitPane.setBottomComponent(new JScrollPane(this.label));
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class shells.plugins.java.Screen.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 Screen.this.splitPane.setDividerLocation(0.15d);
@@ -75,7 +75,7 @@ public class Screen implements Plugin {
         }
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -83,7 +83,7 @@ public class Screen implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

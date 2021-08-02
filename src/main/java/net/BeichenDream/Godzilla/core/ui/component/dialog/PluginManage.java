@@ -45,7 +45,7 @@ public class PluginManage extends JDialog {
         this.splitPane.setTopComponent(new JScrollPane(this.pluginView));
         this.splitPane.setBottomComponent(bottomPanel);
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class core.ui.component.dialog.PluginManage.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 PluginManage.this.splitPane.setDividerLocation(0.85d);

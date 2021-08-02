@@ -41,7 +41,7 @@ public class EnumDatabaseConn implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }
@@ -75,7 +75,7 @@ public class EnumDatabaseConn implements Plugin {
         Log.error("load EnumDatabaseConn Fail!");
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity arg0) {
         this.shell = arg0;
         this.payload = arg0.getPayloadModel();

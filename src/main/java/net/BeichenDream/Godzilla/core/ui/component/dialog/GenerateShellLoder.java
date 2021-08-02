@@ -60,7 +60,7 @@ public class GenerateShellLoder extends JDialog {
         c.add(this.cancelButton, gbcCancel);
         addToComboBox(this.payloadComboBox, ApplicationContext.getAllPayload());
         this.payloadComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.GenerateShellLoder.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 GenerateShellLoder.this.cryptionComboBox.removeAllItems();
@@ -112,8 +112,8 @@ public class GenerateShellLoder extends JDialog {
         dispose();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void addToComboBox(JComboBox<String> comboBox, String[] data) {
         for (String str : data) {
             comboBox.addItem(str);

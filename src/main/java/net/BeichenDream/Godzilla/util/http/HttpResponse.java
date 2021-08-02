@@ -36,24 +36,22 @@ public class HttpResponse {
         ReadAllData(getInputStream(http));
     }
 
-    /* JADX WARN: Type inference failed for: r4v11, types: [java.util.function.Consumer, void] */
-    /* access modifiers changed from: protected */
-    /* JADX WARNING: Unknown variable types count: 1 */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
+     
+     
+     
+     
     public void handleHeader(Map<String, List<String>> r8) {
-        /*
-        // Method dump skipped, instructions count: 103
-        */
+         
         throw new UnsupportedOperationException("Method not decompiled: util.http.HttpResponse.handleHeader(java.util.Map):void");
     }
 
-    /* access modifiers changed from: protected */
+     
     public InputStream getInputStream(HttpURLConnection httpURLConnection) throws IOException {
         InputStream inputStream = httpURLConnection.getErrorStream();
         return inputStream != null ? inputStream : httpURLConnection.getInputStream();
     }
 
-    /* access modifiers changed from: protected */
+     
     public void ReadAllData(InputStream inputStream) throws IOException {
         try {
             if (this.headerMap.get("Content-Length") == null || this.headerMap.get("Content-Length").size() <= 0) {
@@ -67,7 +65,7 @@ public class HttpResponse {
         this.result = this.shellEntity.getCryptionModel().decode(this.result);
     }
 
-    /* access modifiers changed from: protected */
+     
     public byte[] ReadKnownNumData(InputStream inputStream, int num) throws IOException {
         if (num > 0) {
             byte[] temp = new byte[5120];
@@ -86,7 +84,7 @@ public class HttpResponse {
         }
     }
 
-    /* access modifiers changed from: protected */
+     
     public byte[] ReadUnknownNumData(InputStream inputStream) throws IOException {
         byte[] temp = new byte[5120];
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

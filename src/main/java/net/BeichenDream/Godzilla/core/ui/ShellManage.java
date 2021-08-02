@@ -129,46 +129,13 @@ public class ShellManage extends JFrame {
         return this.pluginMap.get(pluginName);
     }
 
-    /*  JADX ERROR: MOVE_RESULT instruction can be used only in fallback mode
-        jadx.core.utils.exceptions.CodegenException: MOVE_RESULT instruction can be used only in fallback mode
-        	at jadx.core.codegen.InsnGen.fallbackOnlyInsn(InsnGen.java:604)
-        	at jadx.core.codegen.InsnGen.makeInsnBody(InsnGen.java:542)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:230)
-        	at jadx.core.codegen.InsnGen.addWrappedArg(InsnGen.java:119)
-        	at jadx.core.codegen.InsnGen.addArg(InsnGen.java:103)
-        	at jadx.core.codegen.InsnGen.generateMethodArguments(InsnGen.java:806)
-        	at jadx.core.codegen.InsnGen.makeInvoke(InsnGen.java:746)
-        	at jadx.core.codegen.InsnGen.makeInsnBody(InsnGen.java:367)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:249)
-        	at jadx.core.codegen.InsnGen.makeInsn(InsnGen.java:217)
-        	at jadx.core.codegen.RegionGen.makeSimpleBlock(RegionGen.java:110)
-        	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:56)
-        	at jadx.core.codegen.RegionGen.makeSimpleRegion(RegionGen.java:93)
-        	at jadx.core.codegen.RegionGen.makeRegion(RegionGen.java:59)
-        	at jadx.core.codegen.MethodGen.addRegionInsns(MethodGen.java:244)
-        	at jadx.core.codegen.MethodGen.addInstructions(MethodGen.java:237)
-        	at jadx.core.codegen.ClassGen.addMethodCode(ClassGen.java:342)
-        	at jadx.core.codegen.ClassGen.addMethod(ClassGen.java:295)
-        	at jadx.core.codegen.ClassGen.lambda$addInnerClsAndMethods$2(ClassGen.java:264)
-        	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-        	at java.util.ArrayList.forEach(ArrayList.java:1259)
-        	at java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:390)
-        	at java.util.stream.Sink$ChainedReference.end(Sink.java:258)
-        */
+     
     public void dispose() {
-        /*
-            r2 = this;
-            core.ui.ShellManage.super.dispose()
-            java.util.HashMap<java.lang.String, core.imp.Plugin> r0 = r2.pluginMap
-            java.util.Set r0 = r0.keySet()
-            r1 = move-result
-            r0.forEach(r1)
-            return
-        */
+         
         throw new UnsupportedOperationException("Method not decompiled: core.ui.ShellManage.dispose():void");
     }
 
-    private /* synthetic */ void lambda$dispose$0(String key) {
+    private   void lambda$dispose$0(String key) {
         Plugin plugin = this.pluginMap.get(key);
         try {
             Method method = functions.getMethodByClass(plugin.getClass(), "closePlugin", null);

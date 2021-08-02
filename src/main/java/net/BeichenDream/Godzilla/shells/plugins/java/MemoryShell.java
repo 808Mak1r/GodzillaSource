@@ -130,7 +130,7 @@ public class MemoryShell implements Plugin {
         }
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -138,7 +138,7 @@ public class MemoryShell implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

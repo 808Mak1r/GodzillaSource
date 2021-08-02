@@ -53,7 +53,7 @@ public class SweetPotato implements Plugin {
         this.splitPane.setTopComponent(topPanel);
         this.splitPane.setBottomComponent(new JScrollPane(this.resultTextArea));
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class shells.plugins.cshap.SweetPotato.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 SweetPotato.this.splitPane.setDividerLocation(0.15d);
@@ -91,7 +91,7 @@ public class SweetPotato implements Plugin {
         this.resultTextArea.setText(this.encoding.Decoding(this.payload.evalFunc(CLASS_NAME, "run", parameter)));
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -99,7 +99,7 @@ public class SweetPotato implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

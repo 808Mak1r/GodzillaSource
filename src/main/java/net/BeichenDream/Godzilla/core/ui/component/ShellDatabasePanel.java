@@ -87,7 +87,7 @@ public class ShellDatabasePanel extends JPanel {
         this.sqlCommand.setText("");
         this.commonsql = new JComboBox<>(SQL_EXAMPLE);
         this.commonsql.addActionListener(new ActionListener() {
-            /* class core.ui.component.ShellDatabasePanel.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent e) {
                 ShellDatabasePanel.this.sqlCommand.setText((String) ShellDatabasePanel.this.commonsql.getSelectedItem());
@@ -136,17 +136,17 @@ public class ShellDatabasePanel extends JPanel {
         add(this.statusLabel, gbcstatus);
         automaticBindClick.bindJButtonClick(this, this);
         this.dblist.setActionDbclick(new ActionDblClick() {
-            /* class core.ui.component.ShellDatabasePanel.AnonymousClass2 */
+             
 
-            @Override // core.ui.imp.ActionDblClick
+            @Override 
             public void dblClick(MouseEvent e) {
                 ShellDatabasePanel.this.fileDataTreeDbClick(e);
             }
         });
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void fileDataTreeDbClick(MouseEvent e) {
         String[] s = this.dblist.GetSelectFile().split("/");
         if (s.length == 1) {
@@ -163,11 +163,11 @@ public class ShellDatabasePanel extends JPanel {
         this.encoding = this.dbInfo.getCharset();
         if (!lastConfig.equals(newConfig)) {
             new Thread(new Runnable() {
-                /* class core.ui.component.ShellDatabasePanel.AnonymousClass3 */
+                 
 
                 public void run() {
                     SwingUtilities.invokeLater(new Runnable() {
-                        /* class core.ui.component.ShellDatabasePanel.AnonymousClass3.AnonymousClass1 */
+                         
 
                         public void run() {
                             ShellDatabasePanel.this.fillDbListByDatabase();
@@ -178,8 +178,8 @@ public class ShellDatabasePanel extends JPanel {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void fillDbListByDatabase() {
         this.dblist.removeAll();
         String sqlString = DatabaseSql.sqlMap.get(String.format("%s-getAllDatabase", this.dbInfo.getDbType().toLowerCase()));

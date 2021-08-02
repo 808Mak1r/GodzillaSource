@@ -101,7 +101,7 @@ public class PZip implements Plugin {
         JOptionPane.showMessageDialog(this.shellEntity.getFrame(), this.encoding.Decoding(this.payload.evalFunc(CLASS_NAME, "unZip", reqParameter)), "提示", 1);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -111,7 +111,7 @@ public class PZip implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

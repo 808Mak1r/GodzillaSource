@@ -43,7 +43,7 @@ public class Lemon implements Plugin {
         this.splitPane.setTopComponent(topPanel);
         this.splitPane.setBottomComponent(new JScrollPane(this.resultTextArea));
         this.splitPane.addComponentListener(new ComponentAdapter() {
-            /* class shells.plugins.cshap.Lemon.AnonymousClass1 */
+             
 
             public void componentResized(ComponentEvent e) {
                 Lemon.this.splitPane.setDividerLocation(0.15d);
@@ -77,7 +77,7 @@ public class Lemon implements Plugin {
         this.resultTextArea.setText(this.encoding.Decoding(this.payload.evalFunc(CLASS_NAME, "run", new ReqParameter())));
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -85,7 +85,7 @@ public class Lemon implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

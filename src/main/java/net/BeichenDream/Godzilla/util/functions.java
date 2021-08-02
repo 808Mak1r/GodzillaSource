@@ -233,7 +233,7 @@ public class functions {
 
     public static void addShutdownHook(final Class<?> cls, final Object object) {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            /* class util.functions.AnonymousClass1 */
+             
 
             public void run() {
                 try {
@@ -561,14 +561,10 @@ public class functions {
         return new String(dst).replace("\r", "").replace("\n", "");
     }
 
-    /* JADX WARNING: Code restructure failed: missing block: B:33:0x00da, code lost:
-        if (r13 == 18) goto L_0x00dc;
-     */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
+     
+     
     public static byte[] base64Decode(String r21) {
-        /*
-        // Method dump skipped, instructions count: 375
-        */
+         
         throw new UnsupportedOperationException("Method not decompiled: util.functions.base64Decode(java.lang.String):byte[]");
     }
 

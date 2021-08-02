@@ -125,8 +125,8 @@ public class ApplicationContext {
         return num;
     }
 
-    /* JADX DEBUG: Multi-variable search result rejected for r29v0, resolved type: java.lang.Class<?> */
-    /* JADX WARN: Multi-variable type inference failed */
+     
+     
     private static int scanClassX(URI uri, String packageName, Class<?> parentClass, Class<?> annotationClass, Map<String, Class<?>> destMap) {
         String jarFileString = functions.getJarFileByClass(ApplicationContext.class);
         if (jarFileString != null) {
@@ -161,8 +161,8 @@ public class ApplicationContext {
         }
     }
 
-    /* JADX DEBUG: Multi-variable search result rejected for r16v0, resolved type: java.lang.Class<?> */
-    /* JADX WARN: Multi-variable type inference failed */
+     
+     
     private static int scanClassByJar(File srcJarFile, String packageName, Class<?> parentClass, Class<?> annotationClass, Map<String, Class<?>> destMap) {
         int addNum = 0;
         try {

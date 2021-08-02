@@ -32,7 +32,7 @@ public class automaticBindClick {
                             method.setAccessible(true);
                             if (method != null) {
                                 fieldValue.addActionListener(new ActionListener() {
-                                    /* class util.automaticBindClick.AnonymousClass1 */
+                                     
 
                                     public void actionPerformed(ActionEvent e) {
                                         try {
@@ -68,7 +68,7 @@ public class automaticBindClick {
                             method.setAccessible(true);
                             if (method != null) {
                                 fieldValue.addActionListener(new ActionListener() {
-                                    /* class util.automaticBindClick.AnonymousClass2 */
+                                     
 
                                     public void actionPerformed(ActionEvent e) {
                                         try {
@@ -124,7 +124,7 @@ public class automaticBindClick {
     private static void addMenuItemClickEvent(Object item, final Method method, final Object eventClass) {
         if (method != null && eventClass != null && item.getClass().isAssignableFrom(JMenuItem.class)) {
             ((JMenuItem) item).addActionListener(new ActionListener() {
-                /* class util.automaticBindClick.AnonymousClass3 */
+                 
 
                 public void actionPerformed(ActionEvent paramActionEvent) {
                     try {
@@ -161,7 +161,7 @@ public class automaticBindClick {
                                         }
                                         JMenuItem menuItem = new JMenuItem(menuItemName);
                                         menuItem.addActionListener(new ActionListener() {
-                                            /* class util.automaticBindClick.AnonymousClass4 */
+                                             
 
                                             public void actionPerformed(ActionEvent e) {
                                                 try {

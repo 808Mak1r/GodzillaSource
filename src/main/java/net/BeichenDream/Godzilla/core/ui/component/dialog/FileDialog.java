@@ -56,7 +56,7 @@ public class FileDialog extends JDialog {
         add(this.cancelButton, gbcCancelButton);
         automaticBindClick.bindJButtonClick(this, this);
         addWindowListener(new WindowListener() {
-            /* class core.ui.component.dialog.FileDialog.AnonymousClass1 */
+             
 
             public void windowOpened(WindowEvent paramWindowEvent) {
             }
@@ -97,8 +97,8 @@ public class FileDialog extends JDialog {
         changeFileInfo();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
+     
+     
     private void cancelButtonClick(ActionEvent actionEvent) {
         this.fileOpertionInfo.setOpertionStatus(false);
         changeFileInfo();

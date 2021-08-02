@@ -77,7 +77,7 @@ public class Meterpreter implements Plugin {
 
     private void goButtonClick(ActionEvent actionEvent) {
         new Thread(new Runnable() {
-            /* class shells.plugins.php.Meterpreter.AnonymousClass1 */
+             
 
             public void run() {
                 String host = Meterpreter.this.hostTextField.getText().trim();
@@ -93,7 +93,7 @@ public class Meterpreter implements Plugin {
         Log.log("meterpreter connect!", new Object[0]);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -111,7 +111,7 @@ public class Meterpreter implements Plugin {
         }
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

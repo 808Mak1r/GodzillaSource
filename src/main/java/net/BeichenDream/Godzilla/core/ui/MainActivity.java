@@ -131,7 +131,7 @@ public class MainActivity extends JFrame {
 
     private void addEasterEgg() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
-            /* class core.ui.MainActivity.AnonymousClass1 */
+             
 
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getKeyCode() != 112 || !ApplicationContext.easterEgg) {

@@ -178,7 +178,7 @@ public class DataTree extends JTree {
         return null;
     }
 
-    /* access modifiers changed from: private */
+     
     public class RightClickEvent extends MouseAdapter {
         private ActionDblClick actionDblClick;
         private JPopupMenu jPopupMenu;

@@ -81,7 +81,7 @@ public class BypassDisableFunctions implements Plugin {
         return this.phpEvalCode.eval(code, reqParameter);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -89,7 +89,7 @@ public class BypassDisableFunctions implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

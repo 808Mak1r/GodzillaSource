@@ -33,7 +33,7 @@ public class ByPassOpenBasedir implements Plugin {
     public ByPassOpenBasedir() {
         this.autoExec.setSelected("true".equals(Db.getSetingValue(APP_ENV_KEY)));
         this.autoExec.addActionListener(new ActionListener() {
-            /* class shells.plugins.php.ByPassOpenBasedir.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent paramActionEvent) {
                 Db.updateSetingKV(ByPassOpenBasedir.APP_ENV_KEY, Boolean.toString(ByPassOpenBasedir.this.autoExec.isSelected()));
@@ -44,7 +44,7 @@ public class ByPassOpenBasedir implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }
@@ -80,7 +80,7 @@ public class ByPassOpenBasedir implements Plugin {
         Log.error("load ByPassOpenBasedir fail!");
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity arg0) {
         this.shell = arg0;
         this.payload = arg0.getPayloadModel();

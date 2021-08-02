@@ -62,7 +62,7 @@ public class DataView extends JTable {
         setRowSorter(this.sorter);
         automaticBindClick.bindMenuItemClick(this.rightClickMenu, null, this);
         addActionForKey("ctrl pressed F", new AbstractAction() {
-            /* class core.ui.component.DataView.AnonymousClass1 */
+             
 
             public void actionPerformed(ActionEvent e) {
                 DataView.this.ctrlPassF(e);
@@ -91,7 +91,7 @@ public class DataView extends JTable {
                 this.sorter.setRowFilter((RowFilter) null);
             } else {
                 this.sorter.setRowFilter(new RowFilter() {
-                    /* class core.ui.component.DataView.AnonymousClass2 */
+                     
 
                     public boolean include(Entry entry) {
                         int count = entry.getValueCount();
@@ -345,7 +345,7 @@ public class DataView extends JTable {
         }
     }
 
-    /* access modifiers changed from: private */
+     
     public class RightClickEvent extends MouseAdapter {
         private ActionDblClick actionDblClick;
         private final DataView dataView;

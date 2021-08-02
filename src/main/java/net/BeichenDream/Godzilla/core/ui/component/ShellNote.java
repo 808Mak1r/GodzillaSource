@@ -25,7 +25,7 @@ public class ShellNote extends JPanel {
         this.textArea.setText(noteData2);
         this.state = true;
         new Thread(new Runnable() {
-            /* class core.ui.component.ShellNote.AnonymousClass1 */
+             
 
             public void run() {
                 while (ShellNote.this.state) {

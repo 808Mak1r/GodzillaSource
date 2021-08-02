@@ -86,7 +86,7 @@ public class Meterpreter implements Plugin {
         JOptionPane.showMessageDialog(this.panel, resultString, "提示", 1);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -104,7 +104,7 @@ public class Meterpreter implements Plugin {
         }
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

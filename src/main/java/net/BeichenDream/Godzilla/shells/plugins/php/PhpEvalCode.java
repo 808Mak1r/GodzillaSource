@@ -91,7 +91,7 @@ public class PhpEvalCode implements Plugin {
         return this.encoding.Decoding(this.payload.evalFunc(CLASS_NAME, "xxx", reqParameter));
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public void init(ShellEntity shellEntity2) {
         this.shellEntity = shellEntity2;
         this.payload = this.shellEntity.getPayloadModel();
@@ -99,7 +99,7 @@ public class PhpEvalCode implements Plugin {
         automaticBindClick.bindJButtonClick(this, this);
     }
 
-    @Override // core.imp.Plugin
+    @Override 
     public JPanel getView() {
         return this.panel;
     }

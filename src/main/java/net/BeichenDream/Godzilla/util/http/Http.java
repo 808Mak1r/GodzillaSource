@@ -153,7 +153,7 @@ public class Http {
         }
     }
 
-    /* access modifiers changed from: private */
+     
     public static class miTM implements TrustManager, X509TrustManager {
         private miTM() {
         }
@@ -170,11 +170,11 @@ public class Http {
             return true;
         }
 
-        @Override // javax.net.ssl.X509TrustManager
+        @Override 
         public void checkServerTrusted(X509Certificate[] certs, String authType) throws CertificateException {
         }
 
-        @Override // javax.net.ssl.X509TrustManager
+        @Override 
         public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException {
         }
     }
