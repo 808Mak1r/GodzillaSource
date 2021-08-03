@@ -79,53 +79,65 @@ public class ApplicationContext {
 
     private static void scanPayload() {
         try {
-            Log.log(String.format("load payload success! payloadMaxNum:%s onceLoadPayloadNum:%s", Integer.valueOf(payloadMap.size()), Integer.valueOf(scanClass(ApplicationContext.class.getResource("/shells/payloads/").toURI(), "shells.payloads", Payload.class, PayloadAnnotation.class, payloadMap))), new Object[0]);
-        } catch (Exception e) {
-            Log.error(e);
+            URL url = ApplicationContext.class.getResource("/shells/payloads/");
+            int loadNum = scanClass(url.toURI(), "shells.payloads", Payload.class, PayloadAnnotation.class, payloadMap);
+            Log.log(String.format("load payload success! payloadMaxNum:%s onceLoadPayloadNum:%s", payloadMap.size(), loadNum), new Object[0]);
+        } catch (Exception var2) {
+            Log.error(var2);
         }
+
     }
 
     private static void scanCryption() {
         try {
-            Log.log(String.format("load cryption success! cryptionMaxNum:%s onceLoadCryptionNum:%s", Integer.valueOf(cryptionMap.size()), Integer.valueOf(scanClass(ApplicationContext.class.getResource("/shells/cryptions/").toURI(), "shells.cryptions", Cryption.class, CryptionAnnotation.class, cryptionMap))), new Object[0]);
-        } catch (Exception e) {
-            Log.error(e);
+            URL url = ApplicationContext.class.getResource("/shells/cryptions/");
+            int loadNum = scanClass(url.toURI(), "shells.cryptions", Cryption.class, CryptionAnnotation.class, cryptionMap);
+            Log.log(String.format("load cryption success! cryptionMaxNum:%s onceLoadCryptionNum:%s", cryptionMap.size(), loadNum), new Object[0]);
+        } catch (Exception var2) {
+            Log.error(var2);
         }
+
     }
 
     private static void scanPlugin() {
         try {
-            Log.log(String.format("load plugin success! pluginMaxNum:%s onceLoadPluginNum:%s", Integer.valueOf(pluginMap.size()), Integer.valueOf(scanClass(ApplicationContext.class.getResource("/shells/plugins/").toURI(), "shells.plugins", Plugin.class, PluginAnnotation.class, pluginMap))), new Object[0]);
-        } catch (Exception e) {
-            Log.error(e);
+            URL url = ApplicationContext.class.getResource("/shells/plugins/");
+            int loadNum = scanClass(url.toURI(), "shells.plugins", Plugin.class, PluginAnnotation.class, pluginMap);
+            Log.log(String.format("load plugin success! pluginMaxNum:%s onceLoadPluginNum:%s", pluginMap.size(), loadNum), new Object[0]);
+        } catch (Exception var2) {
+            Log.error(var2);
         }
+
     }
 
     private static void scanPluginJar() {
         String[] pluginJars = Db.getAllPlugin();
         ArrayList list = new ArrayList();
-        for (int i = 0; i < pluginJars.length; i++) {
+
+        for(int i = 0; i < pluginJars.length; ++i) {
             File jarFile = new File(pluginJars[i]);
-            if (!jarFile.exists() || !jarFile.isFile()) {
-                Log.error(String.format("PluginJarFile : %s no found", pluginJars[i]));
-            } else {
+            if (jarFile.exists() && jarFile.isFile()) {
                 addJar(jarFile);
                 list.add(jarFile);
+            } else {
+                Log.error(String.format("PluginJarFile : %s no found", pluginJars[i]));
             }
         }
-        pluginJarFiles = (File[]) list.toArray(new File[0]);
-        Log.log(String.format("load pluginJar success! pluginJarNum:%s LoadPluginJarSuccessNum:%s", Integer.valueOf(pluginJars.length), Integer.valueOf(pluginJars.length)), new Object[0]);
+
+        pluginJarFiles = (File[])((File[])list.toArray(new File[0]));
+        Log.log(String.format("load pluginJar success! pluginJarNum:%s LoadPluginJarSuccessNum:%s", pluginJars.length, pluginJars.length), new Object[0]);
     }
 
     private static int scanClass(URI uri, String packageName, Class<?> parentClass, Class<?> annotationClass, Map<String, Class<?>> destMap) {
         int num = scanClassX(uri, packageName, parentClass, annotationClass, destMap);
-        for (int i = 0; i < pluginJarFiles.length; i++) {
-            num += scanClassByJar(pluginJarFiles[i], packageName, parentClass, annotationClass, destMap);
+
+        for(int i = 0; i < pluginJarFiles.length; ++i) {
+            File jarFile = pluginJarFiles[i];
+            num += scanClassByJar(jarFile, packageName, parentClass, annotationClass, destMap);
         }
+
         return num;
     }
-
-     
      
     private static int scanClassX(URI uri, String packageName, Class<?> parentClass, Class<?> annotationClass, Map<String, Class<?>> destMap) {
         String jarFileString = functions.getJarFileByClass(ApplicationContext.class);
@@ -193,46 +205,65 @@ public class ApplicationContext {
     }
 
     public static String[] getAllPayload() {
-        return (String[]) payloadMap.keySet().toArray(new String[0]);
+        Set<String> keys = payloadMap.keySet();
+        System.out.println("11111111111111");
+        System.out.println(keys.toArray(new String[0]));
+        return keys.toArray(new String[0]);
     }
 
     public static Payload getPayload(String payloadName) {
-        Class<?> payloadClass = payloadMap.get(payloadName);
-        if (payloadClass == null) {
-            return null;
+        Class<?> payloadClass = (Class)payloadMap.get(payloadName);
+        Payload payload = null;
+        if (payloadClass != null) {
+            try {
+                payload = (Payload)payloadClass.newInstance();
+            } catch (Exception var4) {
+                Log.error(var4);
+            }
         }
-        try {
-            return (Payload) payloadClass.newInstance();
-        } catch (Exception e) {
-            Log.error(e);
-            return null;
-        }
+
+        return payload;
     }
 
     public static Plugin[] getAllPlugin(String payloadName) {
-        ArrayList<Plugin> list = new ArrayList<>();
-        for (String cryptionName : pluginMap.keySet()) {
-            Class<?> pluginClass = pluginMap.get(cryptionName);
-            if (pluginClass != null && ((PluginAnnotation) pluginClass.getAnnotation(PluginAnnotation.class)).payloadName().equals(payloadName)) {
-                try {
-                    list.add((Plugin) pluginClass.newInstance());
-                } catch (Exception e) {
-                    Log.error(e);
+        Iterator<String> keys = pluginMap.keySet().iterator();
+        ArrayList list = new ArrayList();
+
+        while(keys.hasNext()) {
+            String cryptionName = (String)keys.next();
+            Class<?> pluginClass = (Class)pluginMap.get(cryptionName);
+            if (pluginClass != null) {
+                PluginAnnotation pluginAnnotation = (PluginAnnotation)pluginClass.getAnnotation(PluginAnnotation.class);
+                if (pluginAnnotation.payloadName().equals(payloadName)) {
+                    try {
+                        Plugin plugin = (Plugin)pluginClass.newInstance();
+                        list.add(plugin);
+                    } catch (Exception var8) {
+                        Log.error(var8);
+                    }
                 }
             }
         }
-        return (Plugin[]) list.toArray(new Plugin[0]);
+
+        return (Plugin[])list.toArray(new Plugin[0]);
     }
 
     public static String[] getAllCryption(String payloadName) {
-        ArrayList<String> list = new ArrayList<>();
-        for (String cryptionName : cryptionMap.keySet()) {
-            Class<?> cryptionClass = cryptionMap.get(cryptionName);
-            if (cryptionClass != null && ((CryptionAnnotation) cryptionClass.getAnnotation(CryptionAnnotation.class)).payloadName().equals(payloadName)) {
-                list.add(cryptionName);
+        Iterator<String> keys = cryptionMap.keySet().iterator();
+        ArrayList list = new ArrayList();
+
+        while(keys.hasNext()) {
+            String cryptionName = (String)keys.next();
+            Class<?> cryptionClass = (Class)cryptionMap.get(cryptionName);
+            if (cryptionClass != null) {
+                CryptionAnnotation cryptionAnnotation = (CryptionAnnotation)cryptionClass.getAnnotation(CryptionAnnotation.class);
+                if (cryptionAnnotation.payloadName().equals(payloadName)) {
+                    list.add(cryptionName);
+                }
             }
         }
-        return (String[]) list.toArray(new String[0]);
+
+        return (String[])list.toArray(new String[0]);
     }
 
     public static Cryption getCryption(String payloadName, String crytionName) {

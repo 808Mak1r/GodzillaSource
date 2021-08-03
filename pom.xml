@@ -22,7 +22,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.formdev.flatlaf/flatlaf-core -->
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
@@ -38,25 +37,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>svgSalamander</artifactId>
-            <version>1.1.2.4</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-core</artifactId>
-            <version>5.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-swing</artifactId>
-            <version>5.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.27.0-GA</version>
@@ -69,35 +49,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>forms</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>jgoodies-common</artifactId>
-            <version>1.8.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.kitfox.svg/svg-salamander -->
-        <dependency>
             <groupId>com.kitfox.svg</groupId>
             <artifactId>svg-salamander</artifactId>
             <version>1.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-core -->
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-core</artifactId>
-            <version>5.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-swing</artifactId>
-            <version>5.3</version>
         </dependency>
     </dependencies>
     <build>

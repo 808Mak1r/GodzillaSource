@@ -21,33 +21,45 @@ import net.BeichenDream.Godzilla.util.automaticBindClick;
 import net.BeichenDream.Godzilla.util.functions;
 
 public class GenerateShellLoder extends JDialog {
-    private JButton cancelButton = new JButton("取消");
-    private JComboBox<String> cryptionComboBox = new JComboBox<>();
-    private JLabel cryptionLabel = new JLabel("加密器");
-    private JButton generateButton = new JButton("生成");
-    private JLabel passwordLabel = new JLabel("密码");
-    private JTextField passwordTextField = new JTextField(16);
-    private JComboBox<String> payloadComboBox = new JComboBox<>();
-    private JLabel payloadLabel = new JLabel("有效载荷");
-    private JLabel secretKeyLabel = new JLabel("密钥");
-    private JTextField secretKeyTextField = new JTextField(16);
+    private JLabel passwordLabel;
+    private JLabel secretKeyLabel;
+    private JLabel cryptionLabel;
+    private JLabel payloadLabel;
+    private JTextField passwordTextField;
+    private JTextField secretKeyTextField;
+    private JComboBox<String> cryptionComboBox;
+    private JComboBox<String> payloadComboBox;
+    private JButton generateButton;
+    private JButton cancelButton;
 
     public GenerateShellLoder() {
         super(MainActivity.getFrame(), "GenerateShell", true);
-        setLayout(new GridBagLayout());
-        Container c = getContentPane();
-        GBC gbcLPassword = new GBC(0, 0).setInsets(5, -40, 0, 0);
-        GBC gbcPassword = new GBC(1, 0, 3, 1).setInsets(5, 20, 0, 0);
-        GBC gbcLSecretKey = new GBC(0, 1).setInsets(5, -40, 0, 0);
-        GBC gbcSecretKey = new GBC(1, 1, 3, 1).setInsets(5, 20, 0, 0);
-        GBC gbcLPayload = new GBC(0, 2).setInsets(5, -40, 0, 0);
-        GBC gbcPayload = new GBC(1, 2, 3, 1).setInsets(5, 20, 0, 0);
-        GBC gbcLCryption = new GBC(0, 3).setInsets(5, -40, 0, 0);
-        GBC gbcCryption = new GBC(1, 3, 3, 1).setInsets(5, 20, 0, 0);
-        GBC gbcGenerate = new GBC(2, 4).setInsets(5, -40, 0, 0);
-        GBC gbcCancel = new GBC(1, 4, 3, 1).setInsets(5, 20, 0, 0);
+        this.setLayout(new GridBagLayout());
+        Container c = this.getContentPane();
+        GBC gbcLPassword = (new GBC(0, 0)).setInsets(5, -40, 0, 0);
+        GBC gbcPassword = (new GBC(1, 0, 3, 1)).setInsets(5, 20, 0, 0);
+        GBC gbcLSecretKey = (new GBC(0, 1)).setInsets(5, -40, 0, 0);
+        GBC gbcSecretKey = (new GBC(1, 1, 3, 1)).setInsets(5, 20, 0, 0);
+        GBC gbcLPayload = (new GBC(0, 2)).setInsets(5, -40, 0, 0);
+        GBC gbcPayload = (new GBC(1, 2, 3, 1)).setInsets(5, 20, 0, 0);
+        GBC gbcLCryption = (new GBC(0, 3)).setInsets(5, -40, 0, 0);
+        GBC gbcCryption = (new GBC(1, 3, 3, 1)).setInsets(5, 20, 0, 0);
+        GBC gbcGenerate = (new GBC(2, 4)).setInsets(5, -40, 0, 0);
+        GBC gbcCancel = (new GBC(1, 4, 3, 1)).setInsets(5, 20, 0, 0);
+
+        this.passwordLabel = new JLabel("密码");
+        this.secretKeyLabel = new JLabel("密钥");
+        this.payloadLabel = new JLabel("有效载荷");
+        this.cryptionLabel = new JLabel("加密器");
+        this.passwordTextField = new JTextField(16);
+        this.secretKeyTextField = new JTextField(16);
+        this.payloadComboBox = new JComboBox();
+        this.cryptionComboBox = new JComboBox();
+        this.generateButton = new JButton("生成");
+        this.cancelButton = new JButton("取消");
         this.passwordTextField.setText("pass");
         this.secretKeyTextField.setText("key");
+
         c.add(this.passwordLabel, gbcLPassword);
         c.add(this.passwordTextField, gbcPassword);
         c.add(this.secretKeyLabel, gbcLSecretKey);
@@ -58,21 +70,23 @@ public class GenerateShellLoder extends JDialog {
         c.add(this.cryptionComboBox, gbcCryption);
         c.add(this.generateButton, gbcGenerate);
         c.add(this.cancelButton, gbcCancel);
-        addToComboBox(this.payloadComboBox, ApplicationContext.getAllPayload());
-        this.payloadComboBox.addActionListener(new ActionListener() {
-             
 
+        this.addToComboBox(this.payloadComboBox, ApplicationContext.getAllPayload());
+
+        this.payloadComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent paramActionEvent) {
+                String seleteItemString = (String)GenerateShellLoder.this.payloadComboBox.getSelectedItem();
                 GenerateShellLoder.this.cryptionComboBox.removeAllItems();
-                GenerateShellLoder.this.addToComboBox(GenerateShellLoder.this.cryptionComboBox, ApplicationContext.getAllCryption((String) GenerateShellLoder.this.payloadComboBox.getSelectedItem()));
+                GenerateShellLoder.this.addToComboBox(GenerateShellLoder.this.cryptionComboBox, ApplicationContext.getAllCryption(seleteItemString));
             }
         });
+
         automaticBindClick.bindJButtonClick(this, this);
         functions.fireActionEventByJComboBox(this.payloadComboBox);
         functions.setWindowSize(this, 530, 250);
-        setLocationRelativeTo(MainActivity.getFrame());
-        setDefaultCloseOperation(2);
-        setVisible(true);
+        this.setLocationRelativeTo(MainActivity.getFrame());
+        this.setDefaultCloseOperation(2);
+        this.setVisible(true);
     }
 
     private void generateButtonClick(ActionEvent actionEvent) {
@@ -112,8 +126,8 @@ public class GenerateShellLoder extends JDialog {
         dispose();
     }
 
-     
-     
+
+
     private void addToComboBox(JComboBox<String> comboBox, String[] data) {
         for (String str : data) {
             comboBox.addItem(str);
