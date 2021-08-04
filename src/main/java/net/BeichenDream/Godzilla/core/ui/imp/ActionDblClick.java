@@ -1,7 +1,0 @@
-package net.BeichenDream.Godzilla.core.ui.imp;
-
-import java.awt.event.MouseEvent;
-
-public interface ActionDblClick {
-    void dblClick(MouseEvent mouseEvent);
-}

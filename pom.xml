@@ -22,7 +22,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.formdev.flatlaf/flatlaf-core -->
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
@@ -33,27 +32,7 @@
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf-demo</artifactId>
             <version>1.4</version>
-            <scope>system</scope>
             <systemPath>${project.basedir}/lib/flatlaf-demo-1.4.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>svgSalamander</artifactId>
-            <version>1.1.2.4</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-core</artifactId>
-            <version>5.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-swing</artifactId>
-            <version>5.3</version>
         </dependency>
 
         <dependency>
@@ -69,35 +48,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>forms</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jgoodies</groupId>
-            <artifactId>jgoodies-common</artifactId>
-            <version>1.8.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.kitfox.svg/svg-salamander -->
-        <dependency>
             <groupId>com.kitfox.svg</groupId>
             <artifactId>svg-salamander</artifactId>
             <version>1.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-core -->
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-core</artifactId>
-            <version>5.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-swing</artifactId>
-            <version>5.3</version>
         </dependency>
     </dependencies>
     <build>
@@ -144,7 +97,6 @@
             </plugin>
 
             <plugin>
-
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
@@ -153,7 +105,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>net.net.BeichenDream.Godzilla.core.ui.MainActivity</mainClass>
+                            <mainClass>net.core.ui.MainActivity</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -162,7 +114,7 @@
                         <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>assembly</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
