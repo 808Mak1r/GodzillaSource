@@ -9,36 +9,37 @@ import util.Log;
 import util.functions;
 
 public class ShellNote extends JPanel {
-    private String lastNoteMd5;
-    private String noteData;
     private ShellEntity shellEntity;
-    private String shellId = this.shellEntity.getId();
-    private boolean state;
+    private String noteData;
+    private String shellId;
+    private String lastNoteMd5;
     private RTextArea textArea;
+    private boolean state;
 
     public ShellNote(ShellEntity entity) {
         this.shellEntity = entity;
-        ShellNote.super.setLayout(new BorderLayout(1, 1));
-        String noteData2 = Db.getShellNote(this.shellId);
-        this.lastNoteMd5 = functions.md5(noteData2);
+        this.shellId = this.shellEntity.getId();
+        super.setLayout(new BorderLayout(1, 1));
+        String noteData = Db.getShellNote(this.shellId);
+        this.lastNoteMd5 = functions.md5(noteData);
         this.textArea = new RTextArea();
-        this.textArea.setText(noteData2);
+        this.textArea.setText(noteData);
         this.state = true;
-        new Thread(new Runnable() {
-             
-
+        Thread thread = new Thread(new Runnable() {
             public void run() {
-                while (ShellNote.this.state) {
+                while(ShellNote.this.state) {
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(10000L);
                         ShellNote.this.updateDbNote();
-                    } catch (InterruptedException e) {
-                        Log.error(e);
+                    } catch (InterruptedException var2) {
+                        Log.error(var2);
                     }
                 }
+
             }
-        }).start();
-        ShellNote.super.add(new JScrollPane(this.textArea));
+        });
+        thread.start();
+        super.add(new JScrollPane(this.textArea));
     }
 
     public void updateDbNote() {

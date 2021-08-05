@@ -129,21 +129,21 @@ public class ShellManage extends JFrame {
         return this.pluginMap.get(pluginName);
     }
 
-     
-    public void dispose() {
-         
-        throw new UnsupportedOperationException("Method not decompiled: core.ui.ShellManage.dispose():void");
-    }
 
-    private   void lambda$dispose$0(String key) {
-        Plugin plugin = this.pluginMap.get(key);
-        try {
-            Method method = functions.getMethodByClass(plugin.getClass(), "closePlugin", null);
-            if (method != null) {
-                method.invoke(plugin, null);
+    public void dispose() {
+        super.dispose();
+        this.pluginMap.keySet().forEach((key) -> {
+            Plugin plugin = (Plugin)this.pluginMap.get(key);
+
+            try {
+                Method method = functions.getMethodByClass(plugin.getClass(), "closePlugin", (Class[])null);
+                if (method != null) {
+                    method.invoke(plugin, (Object[])null);
+                }
+            } catch (Exception var4) {
+                Log.error(var4);
             }
-        } catch (Exception e) {
-            Log.error(e);
-        }
+
+        });
     }
 }
