@@ -58,7 +58,7 @@ public class CZip implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream(String.format("assets/%s.dll", CLASS_NAME.substring(0, CLASS_NAME.indexOf("."))));
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(String.format("shell/asp/assets/%s.dll", CLASS_NAME.substring(0, CLASS_NAME.indexOf("."))));
                 byte[] binCode = functions.readInputStream(inputStream);
                 inputStream.close();
                 this.loadState = this.payload.include(CLASS_NAME, binCode);

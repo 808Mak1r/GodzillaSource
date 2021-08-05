@@ -90,22 +90,22 @@ public class AppSeting extends JDialog {
         this.tabbedPane.addTab("大文件配置", this.bigFilePanel);
 
 
-        for (String key : pluginSeting.keySet()) {
-
-            this.tabbedPane.addTab(key, (JPanel)(Object)pluginSeting.get(key));
-
-        }
-
-//            pluginSeting.keySet().forEach(k -> {
-//            try {
-//                this.tabbedPane.addTab(k, (JPanel)((Class)pluginSeting.get(k)).newInstance());
-//            } catch (InstantiationException var3) {
-//                var3.printStackTrace();
-//            } catch (IllegalAccessException var4) {
-//                var4.printStackTrace();
-//            }
+//        for (String key : pluginSeting.keySet()) {
 //
-//        });
+//            this.tabbedPane.addTab(key, (JPanel)(Object)pluginSeting.get(key));
+//
+//        }
+
+            pluginSeting.keySet().forEach(k -> {
+            try {
+                this.tabbedPane.addTab(k, (JPanel)((Class)pluginSeting.get(k)).newInstance());
+            } catch (InstantiationException var3) {
+                var3.printStackTrace();
+            } catch (IllegalAccessException var4) {
+                var4.printStackTrace();
+            }
+
+        });
         this.add(this.tabbedPane);
         automaticBindClick.bindJButtonClick(this, this);
         functions.setWindowSize(this, 650, 500);

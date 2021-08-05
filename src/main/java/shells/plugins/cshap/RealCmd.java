@@ -98,7 +98,7 @@ public class RealCmd implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/RevlCmd.dll");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/RevlCmd.dll");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

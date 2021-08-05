@@ -280,7 +280,7 @@ public class PhpShell implements Payload {
     public byte[] getPayload() {
         byte[] data = null;
         try {
-            InputStream fileInputStream = PhpShell.class.getResourceAsStream("assets/payload.php");
+            InputStream fileInputStream = PhpShell.class.getClassLoader().getResourceAsStream("shell/php/assets/payload.php");
             data = functions.readInputStream(fileInputStream);
             fileInputStream.close();
             return data;

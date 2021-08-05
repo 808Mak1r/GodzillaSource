@@ -31,7 +31,7 @@ public class DynamicUpdateClass extends JPanel {
 
   public DynamicUpdateClass() {
     super(new BorderLayout(1, 1));
-    this.classNameTextArea.setText(Db.getSetingValue("DynamicClassNames", readDefaultClassName()));
+    this.classNameTextArea.setText(Db.getSetingValue(ENVNAME, readDefaultClassName()));
 
     Dimension dimension = new Dimension();
     dimension.height = 30;
@@ -52,7 +52,7 @@ public class DynamicUpdateClass extends JPanel {
     byte[] data = null;
 
     try {
-      InputStream fileInputStream = DynamicUpdateClass.class.getResourceAsStream("assets/classNames.txt");
+      InputStream fileInputStream = DynamicUpdateClass.class.getClassLoader().getResourceAsStream("shell/java/assets/classNames.txt");
       data = functions.readInputStream(fileInputStream);
       fileInputStream.close();
     } catch (Exception var3) {

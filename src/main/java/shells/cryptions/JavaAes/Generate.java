@@ -18,11 +18,11 @@ class Generate {
         String template;
         try {
 
-            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/javaTemplate/" + (isBin ? "raw" : "base64") + "GlobalCode.bin");
+            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/java/template/" + (isBin ? "raw" : "base64") + "GlobalCode.bin");
             String globalCode = new String(functions.readInputStream(inputStream));
             inputStream.close();
             String globalCode2 = globalCode.replace("{pass}", pass).replace("{secretKey}", secretKey);
-            InputStream inputStream2 = Generate.class.getClassLoader().getResourceAsStream("shell/javaTemplate/" + (isBin ? "raw" : "base64") + "Code.bin");
+            InputStream inputStream2 = Generate.class.getClassLoader().getResourceAsStream("shell/java/template/" + (isBin ? "raw" : "base64") + "Code.bin");
             String code = new String(functions.readInputStream(inputStream2));
             inputStream2.close();
             Object selectedValue = JOptionPane.showInputDialog((Component) null, "suffix", "selected suffix", 1, (Icon) null, SUFFIX, (Object) null);
@@ -30,7 +30,7 @@ class Generate {
                 return null;
             }
             String suffix = (String) selectedValue;
-            InputStream inputStream3 = Generate.class.getClassLoader().getResourceAsStream("shell/javaTemplate/shell." + suffix);
+            InputStream inputStream3 = Generate.class.getClassLoader().getResourceAsStream("shell/java/template/shell." + suffix);
             String template2 = new String(functions.readInputStream(inputStream3));
             inputStream3.close();
             if (suffix.equals(SUFFIX[1])) {

@@ -268,7 +268,7 @@ public class CShapShell implements Payload {
     public byte[] getPayload() {
         byte[] data = null;
         try {
-            InputStream fileInputStream = CShapShell.class.getResourceAsStream("assets/payload.dll");
+            InputStream fileInputStream = CShapShell.class.getClassLoader().getResourceAsStream("shell/asp/assets/payload.dll");
             data = functions.readInputStream(fileInputStream);
             fileInputStream.close();
             return data;

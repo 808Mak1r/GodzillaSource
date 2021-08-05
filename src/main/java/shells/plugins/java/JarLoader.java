@@ -88,7 +88,7 @@ public class JarLoader implements Plugin {
 
     private void loadDbJarButtonClick(ActionEvent actionEvent) {
         try {
-            InputStream inputStream = getClass().getResourceAsStream(String.format("assets/%s.jar", this.jarComboBox.getSelectedItem()));
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(String.format("shell/java/assets/%s.jar", this.jarComboBox.getSelectedItem()));
             byte[] jarByteArray = functions.readInputStream(inputStream);
             inputStream.close();
             JOptionPane.showMessageDialog(this.panel, loadJar(jarByteArray), "提示", 1);
@@ -101,7 +101,7 @@ public class JarLoader implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/JarLoader.classs");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/JarLoader.classs");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

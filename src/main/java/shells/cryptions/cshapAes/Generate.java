@@ -15,7 +15,7 @@ class Generate {
 
     public static byte[] GenerateShellLoder(String pass, String secretKey, boolean isBin) {
         try {
-            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/aspTemplate/" + (isBin ? "raw.bin" : "base64.bin"));
+            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/asp/template/" + (isBin ? "raw.bin" : "base64.bin"));
             String code = new String(functions.readInputStream(inputStream));
             inputStream.close();
             String code2 = code.replace("{pass}", pass).replace("{secretKey}", secretKey);
@@ -23,7 +23,7 @@ class Generate {
             if (selectedValue == null) {
                 return null;
             }
-            InputStream inputStream2 = Generate.class.getClassLoader().getResourceAsStream("shell/aspTemplate/shell." + ((String) selectedValue));
+            InputStream inputStream2 = Generate.class.getClassLoader().getResourceAsStream("shell/asp/template/shell." + ((String) selectedValue));
             String template = new String(functions.readInputStream(inputStream2));
             inputStream2.close();
             return template.replace("{code}", code2).getBytes();
