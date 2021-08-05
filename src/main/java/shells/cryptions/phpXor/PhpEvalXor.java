@@ -35,7 +35,6 @@ public class PhpEvalXor implements Cryption {
             if (this.payload != null) {
                 this.http.sendHttpResponse(this.payload);
                 this.state = true;
-                return;
             }
             Log.error("payload Is Null");
         } catch (Exception e) {

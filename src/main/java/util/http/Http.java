@@ -23,7 +23,7 @@ import util.functions;
 
 public class Http {
     private CookieManager cookieManager;
-    private Proxy proxy = ApplicationContext.getProxy(this.shellContext);
+    private Proxy proxy;
     private ShellEntity shellContext;
     private URI uri;
 
@@ -31,8 +31,9 @@ public class Http {
         trustAllHttpsCertificates();
     }
 
-    public Http(ShellEntity shellContext2) {
-        this.shellContext = shellContext2;
+    public Http(ShellEntity shellContext) {
+        this.shellContext = shellContext;
+        this.proxy = ApplicationContext.getProxy(this.shellContext);
     }
 
     public HttpResponse SendHttpConn(String urlString, String method, Map<String, String> header, byte[] requestData, int connTimeOut, int readTimeOut, Proxy proxy2) {

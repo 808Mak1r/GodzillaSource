@@ -96,6 +96,7 @@ public class PhpShell implements Payload {
         return result;
     }
 
+
     @Override 
     public boolean uploadFile(String fileName, byte[] data) {
         ReqParameter parameter = new ReqParameter();
@@ -180,15 +181,18 @@ public class PhpShell implements Payload {
         return functions.formatDir(this.currentDir);
     }
 
-    @Override 
+    @Override
     public boolean test() {
-        String codeString = new String(evalFunc(null, "test", new ReqParameter()));
+        byte[] result = this.evalFunc(null, "test", new ReqParameter());
+        String codeString = new String(result);
         if (codeString.trim().equals("ok")) {
             return true;
+        } else {
+            Log.error(codeString);
+            return false;
         }
-        Log.error(codeString);
-        return false;
     }
+
 
     @Override 
     public String currentUserName() {
