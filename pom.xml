@@ -32,6 +32,7 @@
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf-demo</artifactId>
             <version>1.4</version>
+            <scope>system</scope>
             <systemPath>${project.basedir}/lib/flatlaf-demo-1.4.jar</systemPath>
         </dependency>
 

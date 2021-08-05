@@ -36,6 +36,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JComboBox;
 import util.http.Http;
+import java.util.Arrays;
 
 public class functions {
     private static final double CURRENT_HEIGHT;
@@ -490,84 +491,135 @@ public class functions {
     }
 
     public static String base64Encode(byte[] src) {
-        int dp;
-        int sp;
+        int off = 0;
         int end = src.length;
-        byte[] dst = new byte[(((src.length + 2) / 3) * 4)];
+        byte[] dst = new byte[4 * ((src.length + 2) / 3)];
+        int linemax = -1;
+        boolean doPadding = true;
         char[] base64 = toBase64;
-        int sp2 = 0;
-        int slen = ((end - 0) / 3) * 3;
-        int sl = 0 + slen;
-        if (-1 > 0 && slen > 0) {
-            slen = 0 * 3;
+        int sp = off;
+        int slen = (end - off) / 3 * 3;
+        int sl = off + slen;
+        if (linemax > 0 && slen > linemax / 4 * 3) {
+            slen = linemax / 4 * 3;
         }
-        int dp2 = 0;
-        while (true) {
-            dp = dp2;
-            sp = sp2;
-            if (sp >= sl) {
-                break;
+
+        int dp;
+        int b0;
+        int b1;
+        for(dp = 0; sp < sl; sp = b0) {
+            b0 = Math.min(sp + slen, sl);
+            b1 = sp;
+
+            int bits;
+            for(int var13 = dp; b1 < b0; dst[var13++] = (byte)base64[bits & 63]) {
+                bits = (src[b1++] & 255) << 16 | (src[b1++] & 255) << 8 | src[b1++] & 255;
+                dst[var13++] = (byte)base64[bits >>> 18 & 63];
+                dst[var13++] = (byte)base64[bits >>> 12 & 63];
+                dst[var13++] = (byte)base64[bits >>> 6 & 63];
             }
-            int sl0 = Math.min(sp + slen, sl);
-            int sp0 = sp;
-            int dp0 = dp;
-            while (sp0 < sl0) {
-                int sp02 = sp0 + 1;
-                int sp03 = sp02 + 1;
-                sp0 = sp03 + 1;
-                int bits = ((src[sp0] & 255) << 16) | ((src[sp02] & 255) << 8) | (src[sp03] & 255);
-                int dp02 = dp0 + 1;
-                dst[dp0] = (byte) base64[(bits >>> 18) & 63];
-                int dp03 = dp02 + 1;
-                dst[dp02] = (byte) base64[(bits >>> 12) & 63];
-                int dp04 = dp03 + 1;
-                dst[dp03] = (byte) base64[(bits >>> 6) & 63];
-                dp0 = dp04 + 1;
-                dst[dp04] = (byte) base64[bits & 63];
-            }
-            dp2 = dp + (((sl0 - sp) / 3) * 4);
-            sp2 = sl0;
+
+            b1 = (b0 - sp) / 3 * 4;
+            dp += b1;
         }
+
         if (sp < end) {
-            int sp3 = sp + 1;
-            int b0 = src[sp] & 255;
-            int dp3 = dp + 1;
-            dst[dp] = (byte) base64[b0 >> 2];
-            if (sp3 == end) {
-                int dp4 = dp3 + 1;
-                dst[dp3] = (byte) base64[(b0 << 4) & 63];
-                if (1 != 0) {
-                    int dp5 = dp4 + 1;
-                    dst[dp4] = 61;
-                    int i = dp5 + 1;
-                    dst[dp5] = 61;
+            b0 = src[sp++] & 255;
+            dst[dp++] = (byte)base64[b0 >> 2];
+            if (sp == end) {
+                dst[dp++] = (byte)base64[b0 << 4 & 63];
+                if (doPadding) {
+                    dst[dp++] = 61;
+                    dst[dp++] = 61;
                 }
             } else {
-                sp = sp3 + 1;
-                int b1 = src[sp3] & 255;
-                int dp6 = dp3 + 1;
-                dst[dp3] = (byte) base64[((b0 << 4) & 63) | (b1 >> 4)];
-                int dp7 = dp6 + 1;
-                dst[dp6] = (byte) base64[(b1 << 2) & 63];
-                if (1 != 0) {
-                    dp = dp7 + 1;
-                    dst[dp7] = 61;
+                b1 = src[sp++] & 255;
+                dst[dp++] = (byte)base64[b0 << 4 & 63 | b1 >> 4];
+                dst[dp++] = (byte)base64[b1 << 2 & 63];
+                if (doPadding) {
+                    dst[dp++] = 61;
                 }
             }
-            return new String(dst).replace("\r", "").replace("\n", "");
         }
-        return new String(dst).replace("\r", "").replace("\n", "");
+
+        return (new String(dst)).replace("\r", "").replace("\n", "");
     }
 
-    /* JADX WARNING: Code restructure failed: missing block: B:33:0x00da, code lost:
-        if (r13 == 18) goto L_0x00dc;
-     */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static byte[] base64Decode(java.lang.String r21) {
-        /*
-        // Method dump skipped, instructions count: 375
-        */
-        throw new UnsupportedOperationException("Method not decompiled: util.functions.base64Decode(java.lang.String):byte[]");
+    public static byte[] base64Decode(String base64Str) {
+        if (base64Str != null && !base64Str.isEmpty()) {
+            base64Str = base64Str.replace("\r", "").replace("\n", "").replace("\\/", "/").replace("\\\\", "\\");
+            byte[] src = base64Str.getBytes();
+            if (src.length == 0) {
+                return src;
+            } else {
+                int sp = 0;
+                int sl = src.length;
+                int paddings = 0;
+                int len = sl - sp;
+                if (src[sl - 1] == 61) {
+                    ++paddings;
+                    if (src[sl - 2] == 61) {
+                        ++paddings;
+                    }
+                }
+
+                if (paddings == 0 && (len & 3) != 0) {
+                    paddings = 4 - (len & 3);
+                }
+
+                byte[] dst = new byte[3 * ((len + 3) / 4) - paddings];
+                int[] base64 = new int[256];
+                Arrays.fill(base64, -1);
+
+                int dp;
+                for(dp = 0; dp < toBase64.length; base64[toBase64[dp]] = dp++) {
+                }
+
+                base64[61] = -2;
+                dp = 0;
+                int bits = 0;
+                int shiftto = 18;
+
+                while(sp < sl) {
+                    int b = src[sp++] & 255;
+                    if ((b = base64[b]) < 0 && b == -2) {
+                        if (shiftto == 6 && (sp == sl || src[sp++] != 61) || shiftto == 18) {
+                            throw new IllegalArgumentException("Input byte array has wrong 4-byte ending unit");
+                        }
+                        break;
+                    }
+
+                    bits |= b << shiftto;
+                    shiftto -= 6;
+                    if (shiftto < 0) {
+                        dst[dp++] = (byte)(bits >> 16);
+                        dst[dp++] = (byte)(bits >> 8);
+                        dst[dp++] = (byte)bits;
+                        shiftto = 18;
+                        bits = 0;
+                    }
+                }
+
+                if (shiftto == 6) {
+                    dst[dp++] = (byte)(bits >> 16);
+                } else if (shiftto == 0) {
+                    dst[dp++] = (byte)(bits >> 16);
+                    dst[dp++] = (byte)(bits >> 8);
+                } else if (shiftto == 12) {
+                    throw new IllegalArgumentException("Last unit does not have enough valid bits");
+                }
+
+                if (dp != dst.length) {
+                    byte[] arrayOfByte = new byte[dp];
+                    System.arraycopy(dst, 0, arrayOfByte, 0, Math.min(dst.length, dp));
+                    dst = arrayOfByte;
+                }
+
+                return dst;
+            }
+        } else {
+            return new byte[0];
+        }
     }
 
     public static String subMiddleStr(String data, String leftStr, String rightStr) {

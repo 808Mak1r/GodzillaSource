@@ -1,8 +1,8 @@
-package net.BeichenDream.Godzilla.shells.payloads.java;
+package shells.payloads.java;
 
-import net.BeichenDream.Godzilla.core.Db;
-import net.BeichenDream.Godzilla.core.ui.component.RTextArea;
-import net.BeichenDream.Godzilla.core.ui.component.dialog.AppSeting;
+import core.Db;
+import core.ui.component.RTextArea;
+import core.ui.component.dialog.AppSeting;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -15,9 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import net.BeichenDream.Godzilla.util.Log;
-import net.BeichenDream.Godzilla.util.automaticBindClick;
-import net.BeichenDream.Godzilla.util.functions;
+import util.Log;
+import util.automaticBindClick;
+import util.functions;
 
 public class DynamicUpdateClass extends JPanel {
   public static final String ENVNAME = "DynamicClassNames";

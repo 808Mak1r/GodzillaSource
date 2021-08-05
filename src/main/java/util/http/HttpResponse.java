@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
+import java.net.HttpCookie;
 
 public class HttpResponse {
     private Map<String, List<String>> headerMap;
@@ -36,13 +37,27 @@ public class HttpResponse {
         ReadAllData(getInputStream(http));
     }
 
-     
-     
-     
-     
-    public void handleHeader(Map<String, List<String>> r8) {
-         
-        throw new UnsupportedOperationException("Method not decompiled: util.http.HttpResponse.handleHeader(java.util.Map):void");
+
+
+
+    protected void handleHeader(Map<String, List<String>> map) {
+        this.headerMap = map;
+        this.message = (String)((List)map.get((Object)null)).get(0);
+
+        try {
+            Http http = this.shellEntity.getHttp();
+            http.getCookieManager().put(http.getUri(), map);
+            http.getCookieManager().getCookieStore().get(http.getUri());
+            List<HttpCookie> cookies = http.getCookieManager().getCookieStore().get(http.getUri());
+            StringBuilder sb = new StringBuilder();
+            cookies.forEach((cookie) -> {
+                sb.append(String.format(" %s=%s;", cookie.getName(), cookie.getValue()));
+            });
+            this.shellEntity.getHeaders().put("Cookie", sb.toString().trim());
+        } catch (IOException var5) {
+            var5.printStackTrace();
+        }
+
     }
 
      

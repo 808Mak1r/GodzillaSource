@@ -208,8 +208,6 @@ public class ApplicationContext {
 
     public static String[] getAllPayload() {
         Set<String> keys = payloadMap.keySet();
-        System.out.println("11111111111111");
-        System.out.println(keys.toArray(new String[0]));
         return keys.toArray(new String[0]);
     }
 
