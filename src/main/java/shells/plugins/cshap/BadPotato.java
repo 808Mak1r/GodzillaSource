@@ -59,7 +59,7 @@ public class BadPotato implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/BadPotato.dll");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/BadPotato.dll");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

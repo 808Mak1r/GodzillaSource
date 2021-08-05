@@ -62,7 +62,7 @@ public class JZip implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream(String.format("assets/%s.classs", CLASS_NAME));
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(String.format("shell/java/assets/%s.classs", CLASS_NAME));
                 byte[] binCode = functions.readInputStream(inputStream);
                 inputStream.close();
                 this.loadState = this.payload.include(CLASS_NAME, binCode);

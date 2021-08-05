@@ -52,7 +52,7 @@ public class ByPassOpenBasedir implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/ByPassOpenBasedir.php");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/php/assets/ByPassOpenBasedir.php");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

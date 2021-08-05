@@ -53,7 +53,7 @@ public class PhpEvalCode implements Plugin {
     private void Load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/evalCode.php");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/php/assets/evalCode.php");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

@@ -320,7 +320,7 @@ public class JavaShell implements Payload {
     public byte[] getPayload() {
         byte[] data = null;
         try {
-            InputStream fileInputStream = JavaShell.class.getResourceAsStream("assets/payload.classs");
+            InputStream fileInputStream = JavaShell.class.getClassLoader().getResourceAsStream("shell/java/assets/payload.classs");
             data = functions.readInputStream(fileInputStream);
             fileInputStream.close();
         } catch (Exception e) {

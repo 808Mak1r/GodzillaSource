@@ -57,7 +57,7 @@ public class Meterpreter implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/Meterpreter.classs");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/Meterpreter.classs");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {
@@ -96,7 +96,7 @@ public class Meterpreter implements Plugin {
 
     private void initTip() {
         try {
-            InputStream inputStream = getClass().getResourceAsStream("assets/meterpreterTip.txt");
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/meterpreterTip.txt");
             this.tipTextArea.setText(new String(functions.readInputStream(inputStream)));
             inputStream.close();
         } catch (Exception e) {

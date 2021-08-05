@@ -98,7 +98,7 @@ public class RealCmd implements Plugin {
     private void load() {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/RealCmd.classs");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/java/assets/RealCmd.classs");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

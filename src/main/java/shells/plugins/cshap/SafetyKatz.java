@@ -55,7 +55,7 @@ public class SafetyKatz implements Plugin {
     private void loadButtonClick(ActionEvent actionEvent) {
         if (!this.loadState) {
             try {
-                InputStream inputStream = getClass().getResourceAsStream("assets/SafetyKatz.dll");
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("shell/asp/assets/SafetyKatz.dll");
                 byte[] data = functions.readInputStream(inputStream);
                 inputStream.close();
                 if (this.payload.include(CLASS_NAME, data)) {

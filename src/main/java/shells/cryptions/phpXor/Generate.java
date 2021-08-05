@@ -10,7 +10,7 @@ class Generate {
 
     public static byte[] GenerateShellLoder(String pass, String secretKey, boolean isBin) {
         try {
-            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/phpTemplate/" + (isBin ? "raw.bin" : "base64.bin"));
+            InputStream inputStream = Generate.class.getClassLoader().getResourceAsStream("shell/php/template/" + (isBin ? "raw.bin" : "base64.bin"));
             String code = new String(functions.readInputStream(inputStream));
             inputStream.close();
             return code.replace("{pass}", pass).replace("{secretKey}", secretKey).getBytes();
