@@ -232,7 +232,6 @@ public class functions {
 
     public static void addShutdownHook(final Class<?> cls, final Object object) {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-             
 
             public void run() {
                 try {
