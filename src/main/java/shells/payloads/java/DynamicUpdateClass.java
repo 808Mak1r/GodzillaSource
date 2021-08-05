@@ -24,14 +24,15 @@ public class DynamicUpdateClass extends JPanel {
   private final RTextArea classNameTextArea = new RTextArea();
   private final JButton updateHeaderButton = new JButton("修改");
 
-
   static {
     AppSeting.registerPluginSeting("Java动态Class名字", DynamicUpdateClass.class);
   }
 
+
   public DynamicUpdateClass() {
     super(new BorderLayout(1, 1));
-    this.classNameTextArea.setText(Db.getSetingValue(ENVNAME, readDefaultClassName()));
+    this.classNameTextArea.setText(Db.getSetingValue("DynamicClassNames", readDefaultClassName()));
+
     Dimension dimension = new Dimension();
     dimension.height = 30;
     JSplitPane splitPane = new JSplitPane();
@@ -63,6 +64,7 @@ public class DynamicUpdateClass extends JPanel {
 
   public static HashSet getAllDynamicClassName() {
     String classNameString = Db.getSetingValue(ENVNAME, readDefaultClassName());
+
     String[] classNames = classNameString.split("\n");
     HashSet<String> classNameSet = new HashSet();
     Arrays.stream(classNames).forEach((name) -> {
@@ -87,9 +89,8 @@ public class DynamicUpdateClass extends JPanel {
       JOptionPane.showMessageDialog(null, "修改成功", "提示", 1);
     } else {
       JOptionPane.showMessageDialog(null, "ClassName 少于50个", "错误提示", 1);
+
     }
 
   }
-
-
 }

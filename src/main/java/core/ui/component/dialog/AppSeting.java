@@ -334,11 +334,6 @@ public class AppSeting extends JDialog {
         return (String[])arrayList.toArray(new String[0]);
     }
 
-    private void updateFontButtonClick(ActionEvent actionEvent) {
-        ApplicationContext.setFont(this.getSelectFont());
-        JOptionPane.showMessageDialog(this, "修改成功! 重启程序生效!", "提示", 1);
-    }
-
     private void resetFontButtonClick(ActionEvent actionEvent) {
         ApplicationContext.resetFont();
         JOptionPane.showMessageDialog(this, "重置成功! 重启程序生效!", "提示", 1);
