@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Vector;
 import javassist.bytecode.Opcode;
 import javax.swing.JButton;
@@ -38,33 +39,34 @@ import util.automaticBindClick;
 import util.functions;
 
 public class ShellDatabasePanel extends JPanel {
-    private static final String[] EXEC_TYPES = {"select", "update"};
-    private static final String[] SQL_EXAMPLE = {"SELECT 1;", "SELECT COUNT(1) FROM tableName", "SELECT VERSION();"};
-    private JScrollPane commandpane;
-    private JComboBox<String> commonsql;
-    private DataView dataView;
-    private JPopupMenu dataViewPopupMenu;
-    private DefaultMutableTreeNode databaseTreeNode;
-    private JScrollPane datalistpane;
-    private DbInfo dbInfo;
-    private DataTree dblist;
-    private JPopupMenu dblistPopupMenu;
-    private JScrollPane dblistpane;
-    private JButton dbsetButton;
-    private Encoding encoding;
-    private JButton execButton;
-    private JComboBox<String> execTypeComboBox;
-    private JLabel execTypeLabel;
-    private Payload payload = this.shellEntity.getPayloadModel();
+    private static final String[] EXEC_TYPES = new String[]{"select", "update"};
+    private static final String[] SQL_EXAMPLE = new String[]{"SELECT 1;", "SELECT COUNT(1) FROM tableName", "SELECT VERSION();"};
     private ShellEntity shellEntity;
     private JSplitPane splitPane;
+    private JButton execButton;
+    private JButton dbsetButton;
+    private DataTree dblist;
+    private DataView dataView;
     private RTextArea sqlCommand;
-    private JLabel sql_listLabel;
+    private JScrollPane dblistpane;
+    private JScrollPane datalistpane;
+    private JScrollPane commandpane;
+    private JComboBox<String> execTypeComboBox;
+    private JComboBox<String> commonsql;
     private JLabel statusLabel;
+    private JLabel execTypeLabel;
+    private JLabel sql_listLabel;
+    private DefaultMutableTreeNode databaseTreeNode;
+    private Payload payload;
+    private DbInfo dbInfo;
+    private Encoding encoding;
+    private JPopupMenu dataViewPopupMenu;
+    private JPopupMenu dblistPopupMenu;
 
-    public ShellDatabasePanel(ShellEntity shellEntity2) {
-        this.shellEntity = shellEntity2;
-        this.encoding = Encoding.getEncoding(shellEntity2);
+    public ShellDatabasePanel(ShellEntity shellEntity) {
+        this.shellEntity = shellEntity;
+        this.payload = this.shellEntity.getPayloadModel();
+        this.encoding = Encoding.getEncoding(shellEntity);
         this.dbInfo = new DbInfo();
         this.splitPane = new JSplitPane();
         this.databaseTreeNode = new DefaultMutableTreeNode("Database");
@@ -77,20 +79,18 @@ public class ShellDatabasePanel extends JPanel {
         this.dblistpane.setPreferredSize(new Dimension(25, 0));
         this.dblist.setShowsRootHandles(true);
         this.dblist.setRootVisible(false);
-        this.execTypeComboBox = new JComboBox<>(EXEC_TYPES);
-        this.dataView = new DataView(null, null, -1, -1);
+        this.execTypeComboBox = new JComboBox(EXEC_TYPES);
+        this.dataView = new DataView((Vector)null, (Vector)null, -1, -1);
         this.datalistpane = new JScrollPane(this.dataView);
         this.dataView.setAutoResizeMode(0);
         this.datalistpane.setPreferredSize(new Dimension(0, 0));
         this.sqlCommand = new RTextArea();
         this.commandpane = new JScrollPane(this.sqlCommand);
         this.sqlCommand.setText("");
-        this.commonsql = new JComboBox<>(SQL_EXAMPLE);
+        this.commonsql = new JComboBox(SQL_EXAMPLE);
         this.commonsql.addActionListener(new ActionListener() {
-             
-
             public void actionPerformed(ActionEvent e) {
-                ShellDatabasePanel.this.sqlCommand.setText((String) ShellDatabasePanel.this.commonsql.getSelectedItem());
+                ShellDatabasePanel.this.sqlCommand.setText((String)ShellDatabasePanel.this.commonsql.getSelectedItem());
             }
         });
         this.dbsetButton = new JButton("DbInfoConfig");
@@ -105,47 +105,43 @@ public class ShellDatabasePanel extends JPanel {
         this.dataViewPopupMenu.add(copyselectedLineItem);
         this.dataViewPopupMenu.add(exportAllItem);
         this.dataView.setRightClickMenu(this.dataViewPopupMenu);
-        automaticBindClick.bindMenuItemClick(this.dataViewPopupMenu, null, this);
+        automaticBindClick.bindMenuItemClick(this.dataViewPopupMenu, (Map)null, this);
         this.dblistPopupMenu = new JPopupMenu();
         JMenuItem countTableItem = new JMenuItem("Count");
         countTableItem.setActionCommand("countTable");
         this.dblistPopupMenu.add(countTableItem);
-        automaticBindClick.bindMenuItemClick(this.dblistPopupMenu, null, this);
+        automaticBindClick.bindMenuItemClick(this.dblistPopupMenu, (Map)null, this);
         this.dblist.setChildPopupMenu(this.dblistPopupMenu);
         this.execButton = new JButton("Exec SQL");
-        setLayout(new GridBagLayout());
-        GBC gbcleft = new GBC(0, 0, 2, 4).setFill(3).setWeight(0.0d, 1.0d).setIpad(Opcode.GOTO_W, 0);
-        GBC gbcright1 = new GBC(2, 0, 5, 1).setFill(1).setWeight(1.0d, 0.7d).setInsets(0, 5, 0, 0);
-        GBC gbcright2_1 = new GBC(2, 1, 1, 1).setFill(0).setInsets(0, 5, 0, 0);
-        GBC gbcright2_2 = new GBC(3, 1, 1, 1).setFill(2).setWeight(1.0d, 0.0d);
-        GBC gbcright2_3 = new GBC(4, 1, 1, 1).setFill(0);
-        GBC gbcright2_4 = new GBC(5, 1, 1, 1).setFill(2).setWeight(1.0d, 0.0d);
-        GBC gbcright2_5 = new GBC(6, 1, 1, 1).setFill(0);
-        GBC gbcright3 = new GBC(2, 2, 8, 1).setFill(1).setWeight(1.0d, 0.3d).setInsets(0, 5, 0, 0);
-        GBC gbcright4_1 = new GBC(2, 3, 5, 1).setFill(2).setWeight(1.0d, 0.0d).setInsets(0, 5, 0, 0);
-        GBC gbcstatus = new GBC(0, 4, 9, 1).setFill(2).setWeight(1.0d, 0.0d);
-        add(this.dblistpane, gbcleft);
-        add(this.datalistpane, gbcright1);
-        add(this.execTypeLabel, gbcright2_1);
-        add(this.execTypeComboBox, gbcright2_2);
-        add(this.sql_listLabel, gbcright2_3);
-        add(this.commonsql, gbcright2_4);
-        add(this.commandpane, gbcright3);
-        add(this.dbsetButton, gbcright2_5);
-        add(this.execButton, gbcright4_1);
-        add(this.statusLabel, gbcstatus);
+        this.setLayout(new GridBagLayout());
+        GBC gbcleft = (new GBC(0, 0, 2, 4)).setFill(3).setWeight(0.0D, 1.0D).setIpad(200, 0);
+        GBC gbcright1 = (new GBC(2, 0, 5, 1)).setFill(1).setWeight(1.0D, 0.7D).setInsets(0, 5, 0, 0);
+        GBC gbcright2_1 = (new GBC(2, 1, 1, 1)).setFill(0).setInsets(0, 5, 0, 0);
+        GBC gbcright2_2 = (new GBC(3, 1, 1, 1)).setFill(2).setWeight(1.0D, 0.0D);
+        GBC gbcright2_3 = (new GBC(4, 1, 1, 1)).setFill(0);
+        GBC gbcright2_4 = (new GBC(5, 1, 1, 1)).setFill(2).setWeight(1.0D, 0.0D);
+        GBC gbcright2_5 = (new GBC(6, 1, 1, 1)).setFill(0);
+        GBC gbcright3 = (new GBC(2, 2, 8, 1)).setFill(1).setWeight(1.0D, 0.3D).setInsets(0, 5, 0, 0);
+        GBC gbcright4_1 = (new GBC(2, 3, 5, 1)).setFill(2).setWeight(1.0D, 0.0D).setInsets(0, 5, 0, 0);
+        GBC gbcstatus = (new GBC(0, 4, 9, 1)).setFill(2).setWeight(1.0D, 0.0D);
+        this.add(this.dblistpane, gbcleft);
+        this.add(this.datalistpane, gbcright1);
+        this.add(this.execTypeLabel, gbcright2_1);
+        this.add(this.execTypeComboBox, gbcright2_2);
+        this.add(this.sql_listLabel, gbcright2_3);
+        this.add(this.commonsql, gbcright2_4);
+        this.add(this.commandpane, gbcright3);
+        this.add(this.dbsetButton, gbcright2_5);
+        this.add(this.execButton, gbcright4_1);
+        this.add(this.statusLabel, gbcstatus);
         automaticBindClick.bindJButtonClick(this, this);
         this.dblist.setActionDbclick(new ActionDblClick() {
-             
-
-            @Override 
             public void dblClick(MouseEvent e) {
                 ShellDatabasePanel.this.fileDataTreeDbClick(e);
             }
         });
     }
 
-     
      
     private void fileDataTreeDbClick(MouseEvent e) {
         String[] s = this.dblist.GetSelectFile().split("/");
